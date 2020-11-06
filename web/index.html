@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://getbootstrap.com.br/docs/4.1/examples/checkout/ -->
+<html lang="pt-br">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description"
+              content="Formulario usado para Digitacao Padrao PK">
+        <meta name="author" content="Felipe Neves">
+        <link rel="icon" href="https://getbootstrap.com.br/favicon.ico">
+        <title>Digitação 2020</title>
+
+        <!-- Principal CSS do Bootstrap -->
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous" />
+        <link rel="stylesheet" href="css/estilo.css"/>
+        <script>
+            async function dadosPessoas() {
+                if (document.getElementById("recDigitador").value !== "") {
+                    if ((document.getElementById("recZona").value !== "") && (document.getElementById("recFolha").value !== "")) {
+
+
+                        var recLatitude = document.getElementById("recLatitude").value;
+                        var recLongitude = document.getElementById("recLongitude").value;
+                        var varrecLongitude = document.getElementById("recLongitude").value;
+                        var recZona = document.getElementById("recZona").value;
+                        var recFolha = document.getElementById("recFolha").value;
+                        var recPontos = document.getElementById("recPontos").value;
+                        var recDigitador = document.getElementById("recDigitador").value;
+
+                        var recNumeroPessoa = document.getElementById("recNumeroPessoa").value;
+                        var recNome = document.getElementById("recNome").value;
+                        var recSituacao = document.getElementById("recSituacao").value;
+                        var recSituacao2 = document.getElementById("recSituacao2").value;
+                        var recSexo = document.getElementById("recSexo").value;
+                        var recIdade = document.getElementById("recIdade").value;
+                        var recInstrucao = document.getElementById("recInstrucao").value;
+                        var recAtividade = document.getElementById("recAtividade").value;
+                        var recRenda = document.getElementById("recRenda").value;
+                        var recViajens = document.getElementById("recViagens").value;
+
+                        var id = "&id_casa=" + recZona + "_" + recFolha;
+                        var latitude = "&latitude=" + recLatitude;
+                        var longitude = "&longitude=" + recLongitude;
+                        var zona = "&zona=" + recZona;
+                        var folha = "&folha=" + recFolha;
+                        var pontos = "&ponto=" + recPontos;
+                        var digitador = "&digitador=" + recDigitador;
+
+                        var NumeroPessoa = "&NumeroPessoa=" + recNumeroPessoa;
+                        var Nome = "&Nome=" + recNome;
+                        var Situacao = "&Situacao=" + recSituacao;
+                        var Situacao2 = "&situacao2=" + recSituacao2;
+                        var Sexo = "&Sexo=" + recSexo;
+                        var Idade = "&Idade=" + recIdade;
+                        var Instrucao = "&Instrucao=" + recInstrucao;
+                        var Atividade = "&Atividade=" + recAtividade;
+                        var Renda = "&Renda=" + recRenda;
+                        var Viajens = "&Viajens=" + recViajens;
+                        var urlJson;
+                        await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
+                            urlJson = rj
+                        });
+                        var url = urlJson.exportar.apidados + "?acao=cadCasaMoradores"
+                                + id
+                                + latitude
+                                + longitude
+                                + zona
+                                + folha
+                                + pontos
+                                + digitador
+                                + NumeroPessoa
+                                + Nome
+                                + Situacao
+                                + Sexo
+                                + Idade
+                                + Instrucao
+                                + Atividade
+                                + Renda
+                                + Viajens
+                                + Situacao2
+                                ;
+                        console.log(url);
+                        await fetch(url).then((r) => r.json()).then((rj) => {
+                            var corpoDaTabela = document.querySelector("tbody");
+                            var tr = document.createElement("tr");
+                            var NumeroPessoa = document.createElement("td");
+                            var Nome = document.createElement("td");
+                            var Situacao = document.createElement("td");
+                            var Sexo = document.createElement("td");
+                            var Idade = document.createElement("td");
+                            var Instrucao = document.createElement("td");
+                            var Atividade = document.createElement("td");
+                            var Renda = document.createElement("td");
+                            var Viajens = document.createElement("td");
+                            var Id = document.createElement("td");
+                            var Situacao2 = document.createElement("td");
+
+                            rj.forEach(element => {
+                                Id.textContent = element.id;
+                                NumeroPessoa.textContent = element.numeroPessoa;
+                                Nome.textContent = element.nome;
+                                Situacao.textContent = element.situacaoFamiliar;
+                                Sexo.textContent = element.sexo;
+                                Idade.textContent = element.idade;
+                                Instrucao.textContent = element.grau;
+                                Atividade.textContent = element.setor;
+                                Renda.textContent = element.renda;
+                                Viajens.textContent = element.viajens;
+                                Situacao2.textContent = element.situacao;
+                                tr.appendChild(Id)
+                                tr.appendChild(NumeroPessoa);
+                                tr.appendChild(Nome);
+                                tr.appendChild(Situacao);
+                                tr.appendChild(Situacao2);
+                                tr.appendChild(Sexo);
+                                tr.appendChild(Idade);
+                                tr.appendChild(Instrucao);
+                                tr.appendChild(Atividade);
+                                tr.appendChild(Renda);
+                                tr.appendChild(Viajens);
+
+
+                                corpoDaTabela.appendChild(tr);
+                            });
+
+
+                        });
+                        limparCamposPessoas();
+                    } else {
+                        alert("Favor Preencher Zona ou Folha");
+                    }
+                } else {
+                    alert("Favor Preencher Nome Digitador");
+                }
+            }
+            async function dadosViagens() {
+                if (document.getElementById("recDigitador").value !== "") {
+                    if ((document.getElementById("recZona").value !== "") && (document.getElementById("recFolha").value !== "")) {
+                        var id = document.getElementById("recZona").value + "_"
+                                + document.getElementById("recFolha").value;
+                        var recNuPessoas = document.getElementById("recNuPessoas").value;
+                        var recVresidencia = document.getElementById("recVresidencia").value;
+                        var recLocal = document.getElementById("recLocal").value;
+                        var recSaida = document.getElementById("recSaida").value;
+                        var recDestino = document.getElementById("recDestino").value;
+                        var recDestZona = document.getElementById("recDestZona").value;
+                        var recMot = document.getElementById("recMot").value;
+                        var recModo = document.getElementById("recModo").value;
+                        var recModo1 = document.getElementById("recModo1").value;
+                        var recModo2 = document.getElementById("recModo2").value;
+                        var recCont = document.getElementById("recCont").value;
+                        var recDigitador = document.getElementById("recDigitador").value;
+
+                        parametros = "&id_casa=" + id
+                                + "&recNuPessoas=" + recNuPessoas
+                                + "&recVresidencia=" + recVresidencia
+                                + "&recLocal=" + recLocal
+                                + "&recSaida=" + recSaida
+                                + "&recDestino=" + recDestino
+                                + "&recDestZona=" + recDestZona
+                                + "&recMot=" + recMot
+                                + "&recModo=" + recModo
+                                + "&recModo1=" + recModo1
+                                + "&recModo2=" + recModo2
+                                + "&recCont=" + recCont
+                                + "&digitador=" + recDigitador;
+                        var urlJson;
+                        await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
+                            urlJson = rj
+                        });
+                        var url = urlJson.exportar.apidados + "?acao=cadViagens" + parametros
+
+                        console.log(url);
+                        await fetch(url).then((r) => r.json()).then((rj) => {
+                            var corpoDaTabela = document.getElementById("viajens");
+                            var tr = document.createElement("tr");
+                            var recNuPessoa = document.createElement("td");
+                            var id = document.createElement("td");
+                            var recVresidencia = document.createElement("td");
+                            var recLocal = document.createElement("td");
+                            var recSaida = document.createElement("td");
+                            var recDestino = document.createElement("td");
+                            var recDestinoZona = document.createElement("td");
+                            var recMot = document.createElement("td");
+                            var recModo = document.createElement("td");
+                            var recModo1 = document.createElement("td");
+                            var recModo2 = document.createElement("td");
+                            var recCont = document.createElement("td");
+
+                            rj.forEach(element => {
+                                id.textContent = element.id;
+                                recNuPessoa.textContent = element.numeroPessoa;
+                                recVresidencia.textContent = element.viajensResidencia;
+                                recLocal.textContent = element.local;
+                                recSaida.textContent = element.hora;
+                                recDestino.textContent = element.destino;
+                                recDestinoZona.textContent = element.zona;
+                                recMot.textContent = element.mot;
+                                recCont.textContent = element.cont;
+                                recModo.textContent = element.value;
+                                recModo1.textContent = element.value1;
+                                recModo2.textContent = element.value2;
+
+                                tr.appendChild(id);
+                                tr.appendChild(recNuPessoa);
+                                tr.appendChild(recVresidencia);
+                                tr.appendChild(recLocal);
+                                tr.appendChild(recSaida);
+                                tr.appendChild(recDestino);
+                                tr.appendChild(recDestinoZona);
+                                tr.appendChild(recMot);
+                                tr.appendChild(recModo);
+                                tr.appendChild(recModo1);
+                                tr.appendChild(recModo2);
+                                tr.appendChild(recCont);
+
+                                corpoDaTabela.appendChild(tr);
+                            });
+                        });
+                        limparCamposViagens();
+                    } else {
+                        alert("Favor Preencher Zona ou Folha");
+                    }
+                } else {
+                    alert("Favor Preencher Nome Digitador");
+                }
+            }
+            function limparCamposPessoas() {
+                var recNumeroPessoa = document.getElementById("recNumeroPessoa").value = "";
+                var recNome = document.getElementById("recNome").value = "";
+                var recSituacao = document.getElementById("recSituacao").value = "";
+                var recSexo = document.getElementById("recSexo").value = "";
+                var recIdade = document.getElementById("recIdade").value = "";
+                var recInstrucao = document.getElementById("recInstrucao").value = "";
+                var recAtividade = document.getElementById("recAtividade").value = "";
+                var recRenda = document.getElementById("recRenda").value = "";
+                var recViajens = document.getElementById("recViagens").value = "";
+                document.getElementById("recNumeroPessoa").focus();
+            }
+            function limparCamposViagens() {
+                var recNuPessoas = document.getElementById("recNuPessoas").value = "";
+                var recVresidencia = document.getElementById("recVresidencia").value = "";
+                var recLocal = document.getElementById("recLocal").value = "";
+                var recSaida = document.getElementById("recSaida").value = "";
+                var recDestino = document.getElementById("recDestino").value = "";
+                var recDestZona = document.getElementById("recDestZona").value = "";
+                var recMot = document.getElementById("recMot").value = "";
+                var recModo = document.getElementById("recModo").value = "";
+                var recModo1 = document.getElementById("recModo1").value = "";
+                var recModo2 = document.getElementById("recModo2").value = "";
+                var recCont = document.getElementById("recCont").value = "";
+                document.getElementById("recNuPessoas").focus();
+            }
+            function novaPesquisa() {
+                limparCamposPessoas();
+                limparCamposViagens();
+
+                document.getElementById("recLatitude").value = "";
+                document.getElementById("recLongitude").value = "";
+                document.getElementById("recLongitude").value = "";
+                document.getElementById("recZona").value = "";
+                document.getElementById("recFolha").value = "";
+                document.getElementById("recPontos").value = "";
+                document.getElementById("recLatitude").focus();
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand">Digitação</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Cadastrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="editar.html">Editar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="exibir.html">Exibir Todos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="exibir-pesquisas.html">Exibir Pesquisas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="exibir-moradores.html">Exibir Moradores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="exibir-viagens.html">Exibir Viagens</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-inline">
+                    <input class="form-control " id="recDigitador" placeholder="Digitador" aria-label="Digitador">
+                </div>
+            </nav>
+            <!-- Fim NavBar -->
+            <!-- Container Principal -->
+            <div class="container my-5">
+                <div class="row">
+                    <div class="col-md-12 order-md-1">
+                        <!-- Cadastro Casa e Moradores -->
+                        <div class="cadastroCasaEmoradores">
+                            <div class="row">
+                                <!-- Latitude -->
+                                <div class="col-md-2 mb-3">
+                                    <label for="recLatitude">Latitude</label> <input type="text" class="form-control" id="recLatitude" placeholder="" value="">
+                                </div>
+                                <!-- Longitude -->
+                                <div class="col-md-2 mb-3">
+                                    <label for="recLongitude">Longitude</label> <input type="text"   class="form-control" id="recLongitude" placeholder="" value="">
+
+                                </div>
+                                <!-- Zona -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recZona">Zona</label> <input type="text"  class="form-control" id="recZona" placeholder="" value="">
+                                </div>
+                                <!-- Folha -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recFolha">Folha</label> <input type="text"    class="form-control" id="recFolha" placeholder="" value="">
+                                </div>
+                                <!-- Pontos -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recPontos">Pontos</label> <input type="text" class="form-control" id="recPontos" placeholder="" value="">
+                                </div>
+                                <!-- Numero Pessoa -->
+                                <div class="col-md-1 mb-3" style="font-size: 14px;">
+                                    <label for="recNumeroPessoa">Nº Pessoa</label> <input type="text" class="form-control" id="recNumeroPessoa" placeholder="" value="">
+                                </div>
+                                <!-- Nome -->
+                                <div class="col-md-2 mb-3">
+                                    <label for="recNome">Nome</label> <input type="text"  class="form-control" id="recNome" placeholder="" value="">
+                                </div>
+                                <!-- Situacao1 -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recSituacao">Situacao1</label> <input type="text" class="form-control" id="recSituacao" placeholder="" value="">
+                                </div>
+                                <!-- Situacao2 -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recSituacao2">Situacao1</label> <input type="text" class="form-control" id="recSituacao2" placeholder="" value="">
+                                </div>
+                                <!-- Sexo -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recSexo">Sexo</label> <input type="text"  class="form-control" id="recSexo" placeholder="" value="">
+                                </div>
+                                <!-- Idade -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recIdade">Idade</label> <input type="text"    class="form-control" id="recIdade" placeholder="" value="">
+                                </div>
+
+                                <!-- Instrucao -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recInstrucao">Instrucao</label> <input type="text"   class="form-control" id="recInstrucao" placeholder="" value="">
+                                </div>
+                                <!-- Atividade -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recAtividade">Atividade</label> <input type="text"   class="form-control" id="recAtividade" placeholder="" value="">
+                                </div>
+                                <!-- Renda -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recRenda">Renda</label> <input type="text"    class="form-control" id="recRenda" placeholder="" value="">	
+                                </div>
+                                <!-- Viagens -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recViagens">Viagens</label> <input type="text"   class="form-control" id="recViagens" placeholder="" value="">
+                                </div>
+                                <div style="margin-top: 8px;">
+                                    <label></label>
+                                    <button class="btn btn-primary btn-lg btn-block"
+                                            style="font-size: 13px" onclick="dadosPessoas()">Cadastrar
+                                        Pessoa</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ColocarTable Moradores -->
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">NÚMERO</th>
+                                    <th scope="col">NOME</th>
+                                    <th scope="col">Situacao1</th>
+                                    <th scope="col">Situacao2</th>
+                                    <th scope="col">SEXO</th>
+                                    <th scope="col">IDADE</th>
+                                    <th scope="col">GRAU</th>
+                                    <th scope="col">SETOR</th>
+                                    <th scope="col">RENDA</th>
+                                    <th scope="col">VIAGEM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        <!-- Cadastro Viagens -->
+                        <div class="cadastroViajens " style="margin-left: 0px;">
+                            <div class="row">
+                                <!-- Numero Moradores -->
+                                <div class="col-md-2 mb-3">
+                                    <label for="recNuPessoas">Nº Pessoas</label> <input type="text"    class="form-control" id="recNuPessoas" placeholder="" value="">
+                                </div>
+                                <!-- Viagem Residencia -->
+                                <div class="col-md-2 mb-3">
+                                    <label for="recVresidencia">Viagem Residencia</label> <input
+                                        type="text" class="form-control" id="recVresidencia"
+                                        placeholder="" value="">
+                                </div>
+                                <!-- Local -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recLocal">Local</label> <input type="text"    class="form-control" id="recLocal" placeholder="" value="">
+                                </div>
+                                <!-- Hora -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recSaida">Hora</label> <input type="text"    class="form-control" id="recSaida" placeholder="" value="">
+                                </div>
+                                <!-- Destino -->
+                                <div class="col-md-3 mb-3">
+                                    <label for="recDestino">Destino</label> <input type="text"   class="form-control" id="recDestino" placeholder="" value="">
+                                </div>
+                                <!-- Zona -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recDestZona">Zona</label> <input type="text" class="form-control" id="recDestZona" placeholder="" value="">
+                                </div>
+                                <!-- Mot -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recMot">Mot</label> <input type="text"
+                                                                           class="form-control" id="recMot" placeholder="" value="">
+                                </div>
+                                <!-- Modo -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recModo">Modo</label> <input type="text"  class="form-control" id="recModo" placeholder="" value="">
+                                </div>
+                                <!-- Modo1 -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recModo1">Modo1</label> <input type="text"    class="form-control" id="recModo1" placeholder="" value="">
+                                </div>
+                                <!-- Modo2 -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recModo2">Modo2</label> <input type="text"    class="form-control" id="recModo2" placeholder="" value="">
+                                </div>
+                                <!-- Cont -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recCont">Cont</label> <input type="text"  class="form-control" id="recCont" placeholder="" value="">
+                                </div>
+
+
+                                <div style="margin-top: 8px;">
+                                    <label></label>
+                                    <button class="btn btn-primary btn-lg btn-block"
+                                            style="font-size: 13px" onclick="dadosViagens()">Cadastrar
+                                        Viagens
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- ColocarTable Viagens -->
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">NÚMERO</th>
+                                    <th scope="col">V. Residencia</th>
+                                    <th scope="col">Local</th>
+                                    <th scope="col">H. Saida</th>
+                                    <th scope="col">Destino</th>
+                                    <th scope="col">ZN</th>
+                                    <th scope="col">MONT</th>
+                                    <th scope="col">MODO</th>
+                                    <th scope="col">MODO</th>
+                                    <th scope="col">MODO</th>
+                                    <th scope="col">CONT</th>
+                                </tr>
+                            </thead>
+                            <tbody id="viajens">
+
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="margin-top: 8px;">
+                                    <label></label>
+                                    <button class="btn btn-warning btn-lg btn-block"
+                                            style="font-size: 13px" onclick="novaPesquisa()">Cadastrar Nova
+                                        Pesquisa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <center>
+                    <h4>Nao apertar mais F5</h4>
+                    <h5>Utilizar Botao nova Pesquisa. Assim, nao vai precisar digitar nome do <b> Digitador </b></h5>
+                    <h6>Proxima Atualização Mudar com a tecla <b>ENTER</b> </h6>
+                    <h6>Proxima Atualização Deletar conteúdo das telas Exibir... </h6>
+                </center>
+            </div>
+        </div>
+        <!-- Principal JavaScript do Bootstrap
+        ================================================== -->
+        <!-- Foi colocado no final para a página carregar mais rápido -->
+        <!--<script src="./Exemplo de formulário para checkout usando Bootstrap_files/jquery-3.3.1.slim.min.js.download" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+
+
+    </body>
+</html>

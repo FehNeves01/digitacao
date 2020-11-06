@@ -1,0 +1,23 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+input
+{
+    width: 35px;
+}
+.scroll-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.input-barra{
+    width: 65px !important;
+}
+.div-tabelas{
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
