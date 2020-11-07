@@ -15,8 +15,8 @@ public class ConectaBanco {
     //public static String path = "C:\\Users\\felip\\eclipse-workspace\\Digitacao\\WebContent\\WEB-INF\\properties\\db.properties";
 
     //maquina IPK aletrar Path
-//    private File file = new File("/jspupload/props", "digitacao.properties");
-    private File file = new File ("/Users/felipeneves/NetBeansProjects/Digitacao/web/WEB-INF/properties/digitacao.properties");
+    private File file = new File("/jspupload/props", "digitacao.properties");
+//    private File file = new File ("/Users/felipeneves/NetBeansProjects/Digitacao/web/WEB-INF/properties/digitacao.properties");
     public static String filePath = "";
 
     public ConectaBanco() throws Exception {

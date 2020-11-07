@@ -5,6 +5,9 @@
         <group>
             <file>file:/Users/felipeneves/NetBeansProjects/Digitacao/src/java/controler/Apidados.java</file>
             <file>file:/Users/felipeneves/NetBeansProjects/Digitacao/src/java/dao/DaoCasa.java</file>
+            <file>file:/Users/felipeneves/NetBeansProjects/Digitacao/src/java/connection/NewConectaBanco.java</file>
+            <file>file:/Users/felipeneves/NetBeansProjects/Digitacao/src/java/connection/ConectaBanco.java</file>
+            <file>file:/Users/felipeneves/NetBeansProjects/Digitacao/web/css/estilo.css</file>
             <file>file:/Users/felipeneves/NetBeansProjects/Digitacao/src/java/dao/DaoMoradores.java</file>
             <file>file:/Users/felipeneves/NetBeansProjects/Digitacao/src/java/dao/DaoViajens.java</file>
         </group>
