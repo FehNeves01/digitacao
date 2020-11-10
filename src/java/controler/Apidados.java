@@ -62,7 +62,7 @@ public class Apidados extends HttpServlet {
 
     private void processRequest() throws IOException {
 
-        new CreateDataBase();
+//        new CreateDataBase();
 
         switch (request.getParameter("acao")) {
             case "cadCasaMoradores":
