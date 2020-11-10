@@ -16,6 +16,17 @@ public class Viajens {
     private String value1;
     private String value2;
     private String digitador;
+    private String numeroViagem;
+
+    public String getNumeroViagem() {
+        return numeroViagem;
+    }
+
+    public void setNumeroViagem(String numeroViagem) {
+        this.numeroViagem = numeroViagem;
+    }
+    
+    
 
     public String getDigitador() {
    return digitador;

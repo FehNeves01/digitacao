@@ -156,8 +156,9 @@
                         var recModo2 = document.getElementById("recModo2").value;
                         var recCont = document.getElementById("recCont").value;
                         var recDigitador = document.getElementById("recDigitador").value;
+                        var recNumViagem = document.getElementById("recNumViagem").value;
 
-                        parametros = "&id_casa=" + id
+                        var parametros = "&id_casa=" + id
                                 + "&recNuPessoas=" + recNuPessoas
                                 + "&recVresidencia=" + recVresidencia
                                 + "&recLocal=" + recLocal
@@ -169,12 +170,14 @@
                                 + "&recModo1=" + recModo1
                                 + "&recModo2=" + recModo2
                                 + "&recCont=" + recCont
-                                + "&digitador=" + recDigitador;
+                                + "&digitador=" + recDigitador
+                                + "&numeroViagem=" + recNumViagem;
+                ;
                         var urlJson;
                         await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
                             urlJson = rj
                         });
-                        var url = urlJson.exportar.apidados + "?acao=cadViagens" + parametros
+                        var url = urlJson.exportar.apidados + "?acao=cadViagens" + parametros;
 
                         console.log(url);
                         await fetch(url).then((r) => r.json()).then((rj) => {
@@ -192,6 +195,7 @@
                             var recModo1 = document.createElement("td");
                             var recModo2 = document.createElement("td");
                             var recCont = document.createElement("td");
+                            var recNumViagem = document.createElement("td");
 
                             rj.forEach(element => {
                                 id.textContent = element.id;
@@ -206,8 +210,10 @@
                                 recModo.textContent = element.value;
                                 recModo1.textContent = element.value1;
                                 recModo2.textContent = element.value2;
+                                recNumViagem.textContent = element.numeroViagem;
 
                                 tr.appendChild(id);
+                                tr.appendChild(recNumViagem);
                                 tr.appendChild(recNuPessoa);
                                 tr.appendChild(recVresidencia);
                                 tr.appendChild(recLocal);
@@ -256,7 +262,8 @@
                 var recModo1 = document.getElementById("recModo1").value = "";
                 var recModo2 = document.getElementById("recModo2").value = "";
                 var recCont = document.getElementById("recCont").value = "";
-                document.getElementById("recNuPessoas").focus();
+                var recIdViagens = document.getElementById("recIdViagens").value = "";
+                document.getElementById("recIdViagens").focus();
             }
             function novaPesquisa() {
                 var corpoDaTabelaMoradores = document.getElementById("corpoTabelaMoradores");
@@ -346,7 +353,7 @@
                                     <label for="recPontos">Pontos</label> <input type="text" class="form-control" id="recPontos" placeholder="" value="">
                                 </div>
                                 <!-- Numero Pessoa -->
-                                <div class="col-md-1 mb-3" style="font-size: 14px;">
+                                <div class="col-md-2 mb-3" style="font-size: 14px;">
                                     <label for="recNumeroPessoa">Nº Pessoa</label> <input type="text" class="form-control" id="recNumeroPessoa" placeholder="" value="">
                                 </div>
                                 <!-- Nome -->
@@ -372,12 +379,12 @@
                                 </div>
                                 
                                 <!-- Atividade -->
-                                <div class="col-md-1 mb-3">
+                                <div class="col-md-2 mb-3">
                                     <label for="recAtividade">S.Atividade</label> <input type="text"   class="form-control" id="recAtividade" placeholder="" value="">
                                 </div>
                                 
                                 <!-- Atividade -->
-                                <div class="col-md-1 mb-3">
+                                <div class="col-md-2 mb-3">
                                     <label for="recAtividade">S.Atividade2</label> <input type="text"   class="form-control" id="recSetorAtividade" placeholder="" value="">
                                 </div>
                                 
@@ -423,6 +430,12 @@
                         <!-- Cadastro Viagens -->
                         <div class="cadastroViajens " style="margin-left: 0px;">
                             <div class="row">
+                                <!-- Numero Viagem -->
+                                <div class="col-md-2 mb-3">
+                                    <label for="recNumViagem">Nº Viagem</label> 
+                                    <input type="text" class="form-control" id="recNumViagem" placeholder="" value="">
+                                </div>
+                                
                                 <!-- Numero Moradores -->
                                 <div class="col-md-2 mb-3">
                                     <label for="recNuPessoas">Nº Pessoas</label> <input type="text"    class="form-control" id="recNuPessoas" placeholder="" value="">
@@ -487,6 +500,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">NÚMERO VIAGEM</th>
                                     <th scope="col">NÚMERO</th>
                                     <th scope="col">V. Residencia</th>
                                     <th scope="col">Local</th>

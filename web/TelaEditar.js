@@ -1,28 +1,27 @@
 /* global fetch */
-var numeroPessoaViagens;
+var numeroViagem;
 var horaViagens;
 
 async function buscaPesquisas() {
     var urlJson = await todasAsBuscas("./urlsJSON.json");
     var url = urlJson.exportar.apidados + "?acao=buscaPesquisas";
-//    alert(url);
     var dados = await todasAsBuscas(url);
-    console.log(dados);
     var corpoGroup = document.getElementById("groupPesquisas");
+    
+    var listaCabecalho = document.createElement("ul");
     for (var i = 0, max = dados.length; i < max; i++) {
-//   console.log(dados[i].id);
-        var aPesquisa = document.createElement("span");
+        var aPesquisa = document.createElement("li");
         aPesquisa.id = i;
         aPesquisa.className = "dropdown-item";
         aPesquisa.setAttribute("onclick", "selecionando(this.id)");
         aPesquisa.value = dados[i].id;
         aPesquisa.textContent = dados[i].id;
-
-        corpoGroup.appendChild(aPesquisa);
+        listaCabecalho.appendChild(aPesquisa);
+        corpoGroup.appendChild(listaCabecalho);
     }
 }
+
 async function selecionando(id) {
-    alert(id)
     var elementoSelecionado = document.getElementById(id);
     var valorElementoSelecionado = elementoSelecionado.textContent;
     document.getElementById("dropdownMenuButton").textContent = valorElementoSelecionado;
@@ -32,37 +31,54 @@ async function selecionando(id) {
     var dadosPesquisaSelecionadaMoradores = await todasAsBuscas(url);
     url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaCasa" + parametroBusca;
     var dadosPesquisaSelecionadaCasa = await todasAsBuscas(url);
+//    zerarCorpoGroup("groupPesquisas");
+    zerarCorpoGroup("groupPesquisasPessoa");
+    zerarCorpoGroup("groupPesquisasViagens");
+    zerarCorpoTabela("tabelaMoradores");
+    zerarCorpoTabela("viajens");
+    
+    document.getElementById("dropdownMenuButtonPessoa").textContent = "Seleciona Número Pessoa";
+    document.getElementById("dropdownMenuButtonViagem").textContent = "Seleciona Número Viagem";
+    limparCamposPessoas();
+    limparCamposViagens();
     organiInputsCasa(dadosPesquisaSelecionadaCasa);
     organizaGroupPessoas(dadosPesquisaSelecionadaMoradores);
 
 }
+
 function organizaGroupPessoas(dados) {
     var corpoGrupoPessoas = document.getElementById("groupPesquisasPessoa");
+    var listaCabecalho = document.createElement("ul");
     for (var i = 0, max = dados.length; i < max; i++) {
-        var aPesquisa = document.createElement("span");
-        aPesquisa.id = i + "_" + "groupPesquisasPessoa";
+        var aPesquisa = document.createElement("li");
+        aPesquisa.id = i + "groupPesquisasPessoa";
         aPesquisa.className = "dropdown-item";
         aPesquisa.setAttribute("onclick", "pessoaEscolhida(this.id)");
         aPesquisa.value = dados[i].numeroPessoa;
         aPesquisa.textContent = dados[i].numeroPessoa;
-        corpoGrupoPessoas.appendChild(aPesquisa);
+        listaCabecalho.appendChild(aPesquisa);
+        corpoGrupoPessoas.appendChild(listaCabecalho);
     }
 
 }
+
 function pessoaEscolhida(id) {
-//    alert(id);
+
     var elementoSelecionado = document.getElementById(id);
     var valorElementoSelecionado = elementoSelecionado.textContent;
     document.getElementById("dropdownMenuButtonPessoa").textContent = valorElementoSelecionado;
 
     var numeroSelecionado = document.getElementById("dropdownMenuButtonPessoa").textContent;
     var parametros = "&numeroPessoaSelecionada=" + numeroSelecionado + "&numeroPesquisaSelecionada=" + document.getElementById("dropdownMenuButton").textContent;
-
+    
+    zerarCorpoGroup("groupPesquisasViagens");
+    zerarCorpoTabela("tabelaMoradores");
+    zerarCorpoTabela("viajens");
+    
     organizaInputsPessoa(numeroSelecionado, parametros);
 
 
 }
-
 
 async function todasAsBuscas(qualquerBusca) {
     var retorno;
@@ -90,6 +106,7 @@ async function organizaInputsPessoa(numeroSelecionado, parametros) {
         var recIdade = document.getElementById("recIdade").value = rj[0].idade;
         var recInstrucao = document.getElementById("recInstrucao").value = rj[0].grau;
         var recAtividade = document.getElementById("recAtividade").value = rj[0].setor;
+        var recSetorAtividade = document.getElementById("recSetorAtividade").value = rj[0].setorAtividade;
         var recRenda = document.getElementById("recRenda").value = rj[0].renda;
         var recViajens = document.getElementById("recViagens").value = rj[0].viajens;
 
@@ -106,25 +123,26 @@ function organiInputsCasa(dados) {
     var recPontos = document.getElementById("recPontos").value = dados[0].pontos;
 }
 
-
 async function organizaGroupViagens() {
     var urlJson = await todasAsBuscas("./urlsJSON.json");
     var valorElementoSelecionadoPesquisa = document.getElementById("dropdownMenuButton").textContent;
-    var parametroBusca = "&idCasa=" + valorElementoSelecionadoPesquisa;
+    var valorElementoSelecionadoPessoa =  document.getElementById("dropdownMenuButtonPessoa").textContent;
+    var parametroBusca = "&idCasa=" + valorElementoSelecionadoPesquisa+"&numPessoa=" + valorElementoSelecionadoPessoa;
 
     var url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaViajens" + parametroBusca;
+    console.log(url);
     var dadosSelecao = await todasAsBuscas(url);
-    console.log(dadosSelecao)
     var corpoGrupoVigens = document.getElementById("groupPesquisasViagens");
+    var listaCabecalho = document.createElement("ul");
+    
     for (var i = 0, max = dadosSelecao.length; i < max; i++) {
-        var aPesquisa = document.createElement("span");
-        aPesquisa.id = i + "_" + "groupPesquisasViagens";
+        var aPesquisa = document.createElement("li");
+        aPesquisa.id = i + "groupPesquisasViagens";
         aPesquisa.className = "dropdown-item";
         aPesquisa.setAttribute("onclick", "viagemEscolhida(this.id)");
-        aPesquisa.textContent = dadosSelecao[i].numeroPessoa + "_" + dadosSelecao[i].hora;
-        numeroPessoaViagens = dadosSelecao[i].numeroPessoa;
-        horaViagens = dadosSelecao[i].hora;
-        corpoGrupoVigens.appendChild(aPesquisa);
+        aPesquisa.textContent = dadosSelecao[i].numeroViagem;
+        listaCabecalho.appendChild(aPesquisa);
+        corpoGrupoVigens.appendChild(listaCabecalho);
     }
 }
 
@@ -132,16 +150,19 @@ function viagemEscolhida(id) {
     var elementoSelecionado = document.getElementById(id);
     var valorElementoSelecionado = elementoSelecionado.textContent;
     document.getElementById("dropdownMenuButtonViagem").textContent = valorElementoSelecionado;
-    organizaImputsViagem();
+    var valorNumViagem = document.getElementById("dropdownMenuButtonViagem").textContent;
+    organizaImputsViagem(valorNumViagem);
 }
 
-async function organizaImputsViagem() {
+async function organizaImputsViagem(valorNumViagem) {
     var urlJson = await todasAsBuscas("./urlsJSON.json");
-    var parametros = "&idCasa=" + document.getElementById("dropdownMenuButton").textContent + "&numeroPessoaViagem=" + numeroPessoaViagens + "&numeroHoraViagem=" + horaViagens;
+    var idCasa = document.getElementById("dropdownMenuButton").textContent;
+    var numeroPessoa = document.getElementById("dropdownMenuButtonPessoa").textContent;
+    var parametros = "&idCasa=" + idCasa + "&numeroViagem=" + valorNumViagem + "&numeroPessoa=" + numeroPessoa;
     var url = urlJson.exportar.apidados + "?acao=buscaDadosViagens" + parametros;
     console.log(url);
     var dadosSelecao = await todasAsBuscas(url);
-    console.log(dadosSelecao);
+  
 
 
 
@@ -158,12 +179,14 @@ async function organizaImputsViagem() {
     var recModo1 = document.getElementById("recModo1").value = dadosSelecao[0].value1;
     var recModo2 = document.getElementById("recModo2").value = dadosSelecao[0].value2;
     var recCont = document.getElementById("recCont").value = dadosSelecao[0].cont;
+    var recNumViagem = document.getElementById("recNumViagem").value = dadosSelecao[0].numeroViagem;
 }
 
 async function preencheDadosPessoaTabela() {
 
     if ((document.getElementById("dropdownMenuButtonPessoa").textContent).trim() !== "Seleciona Número Pessoa".trim()) {
 
+        zerarCorpoTabela("tabelaMoradores");
         var recId = document.getElementById("recId").value;
         var recNumeroPessoa = document.getElementById("recNumeroPessoa").value;
         var recNome = document.getElementById("recNome").value;
@@ -178,7 +201,7 @@ async function preencheDadosPessoaTabela() {
 
         var recZona = document.getElementById("recZona").value;
         var recFolha = document.getElementById("recFolha").value;
-        var idCasa = "&id_casa=" + recZona + "_" + recFolha;
+        var idCasa = "&id_casa=" + recZona + recFolha;
 
         var NumeroPessoa = "&NumeroPessoa=" + recNumeroPessoa;
         var Nome = "&Nome=" + recNome;
@@ -259,7 +282,8 @@ async function preencheDadosPessoaTabela() {
 }
 
 async function preencheDadosViagensTabela() {
-    var id = document.getElementById("recZona").value + "_"
+    zerarCorpoTabela("viajens");
+    var id = document.getElementById("recZona").value
             + document.getElementById("recFolha").value;
     var recNuPessoas = document.getElementById("recNuPessoas").value;
     var recVresidencia = document.getElementById("recVresidencia").value;
@@ -273,6 +297,7 @@ async function preencheDadosViagensTabela() {
     var recModo2 = document.getElementById("recModo2").value;
     var recCont = document.getElementById("recCont").value;
     var recIdViagens = document.getElementById("recIdViagens").value;
+    var recNumViagens =  document.getElementById("recNumViagem").value;
 
     var parametros = "&id_casa=" + id
             + "&recNuPessoas=" + recNuPessoas
@@ -286,10 +311,13 @@ async function preencheDadosViagensTabela() {
             + "&recModo1=" + recModo1
             + "&recModo2=" + recModo2
             + "&recCont=" + recCont
-            + "&recIdViagens=" + recIdViagens;
+            + "&recIdViagens=" + recIdViagens
+            + "&numeroViagem="+ recNumViagens
+            ;
+            
     var urlJson;
     await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
-        urlJson = rj
+        urlJson = rj;
     });
     var url = urlJson.exportar.apidados + "?acao=atualizaCadViagens" + parametros;
 
@@ -309,7 +337,7 @@ async function preencheDadosViagensTabela() {
         var recModo1 = document.createElement("td");
         var recModo2 = document.createElement("td");
         var recCont = document.createElement("td");
-
+        var recNumViagens = document.createElement("td");
         rj.forEach(element => {
             id.textContent = element.id;
             recNuPessoa.textContent = element.numeroPessoa;
@@ -323,8 +351,10 @@ async function preencheDadosViagensTabela() {
             recModo.textContent = element.hora;
             recModo1.textContent = element.value1;
             recModo2.textContent = element.value2;
-
+            recNumViagens.textContent = element.numeroViagem;
+            
             tr.appendChild(id);
+            tr.appendChild(recNumViagens);
             tr.appendChild(recNuPessoa);
             tr.appendChild(recVresidencia);
             tr.appendChild(recLocal);
@@ -351,7 +381,7 @@ async function atualizaDadosPesquisa() {
     var recPontos = document.getElementById("recPontos").value;
 
 
-    var id = "&id_casa=" + recZona + "_" + recFolha;
+    var id = "&id_casa=" + recZona + recFolha;
     var latitude = "&latitude=" + recLatitude;
     var longitude = "&longitude=" + recLongitude;
     var zona = "&zona=" + recZona;
@@ -385,6 +415,7 @@ function limparCamposPessoas() {
     var recViajens = document.getElementById("recViagens").value = "";
     document.getElementById("recNumeroPessoa").focus();
 }
+
 function limparCamposViagens() {
     var recNuPessoas = document.getElementById("recNuPessoas").value = "";
     var recVresidencia = document.getElementById("recVresidencia").value = "";
@@ -397,8 +428,11 @@ function limparCamposViagens() {
     var recModo1 = document.getElementById("recModo1").value = "";
     var recModo2 = document.getElementById("recModo2").value = "";
     var recCont = document.getElementById("recCont").value = "";
-    document.getElementById("recVresidencia").focus();
+    document.getElementById("recNumViagem").value = "" ;
+    document.getElementById("recIdViagens").value = "" ;
+    document.getElementById("recNumViagem").focus();
 }
+
 async function deletarPesquisa() {
     var selecao = document.getElementById("dropdownMenuButton").textContent;
     if (selecao.trim() !== "Seleciona Pesquisa") {
@@ -408,21 +442,25 @@ async function deletarPesquisa() {
         await fetch(url);
         alert("Pesquisa Completa Deletada");
         window.location.reload();
-    }else{
+    } else {
         alert("Selecionar Pesquisa");
     }
 
 
-    
+
 }
 
 function pesquisandoManual() {
     var pesquisaZonaManual = document.getElementById("pesquisaZona").value;
     var pesquisaFolhaManual = document.getElementById("pesquisaFolha").value;
-
-    execultandoPesquisaManual(pesquisaZonaManual + "_" + pesquisaFolhaManual);
+    zerarCorpoGroup("groupPesquisasPessoa");
+    zerarCorpoGroup("groupPesquisasViagens");
+    zerarCorpoTabela("tabelaMoradores");
+    zerarCorpoTabela("viajens");
+    limparCamposPessoas();
+    limparCamposViagens();
+    execultandoPesquisaManual(pesquisaZonaManual + pesquisaFolhaManual);
 }
-
 
 async function execultandoPesquisaManual(zonaEfolha) {
     document.getElementById("pesquisaZona").value = "";
@@ -436,4 +474,22 @@ async function execultandoPesquisaManual(zonaEfolha) {
     var dadosPesquisaSelecionadaCasa = await todasAsBuscas(url);
     organiInputsCasa(dadosPesquisaSelecionadaCasa);
     organizaGroupPessoas(dadosPesquisaSelecionadaMoradores);
+}
+
+function zerarCorpoTabela(id) {
+    var corpoDaTabela = document.getElementById(id).querySelector("tr");
+    if (corpoDaTabela !== null) {
+        corpoDaTabela.parentNode.removeChild(corpoDaTabela);
+    }
+}
+
+function zerarCorpoGroup(id) {
+    var corpoGrupo = document.getElementById(id);
+    var elementoGroup = corpoGrupo.querySelector("ul");
+    console.log(elementoGroup === null);
+    
+    if (elementoGroup !== null) {
+        elementoGroup.parentNode.removeChild(elementoGroup);
+    }
+    console.log(elementoGroup);
 }
