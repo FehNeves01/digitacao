@@ -26,7 +26,6 @@
 
                         var recLatitude = document.getElementById("recLatitude").value;
                         var recLongitude = document.getElementById("recLongitude").value;
-                        var varrecLongitude = document.getElementById("recLongitude").value;
                         var recZona = document.getElementById("recZona").value;
                         var recFolha = document.getElementById("recFolha").value;
                         var recPontos = document.getElementById("recPontos").value;
@@ -35,7 +34,6 @@
                         var recNumeroPessoa = document.getElementById("recNumeroPessoa").value;
                         var recNome = document.getElementById("recNome").value;
                         var recSituacao = document.getElementById("recSituacao").value;
-                        var recSituacao2 = document.getElementById("recSituacao2").value;
                         var recSexo = document.getElementById("recSexo").value;
                         var recIdade = document.getElementById("recIdade").value;
                         var recInstrucao = document.getElementById("recInstrucao").value;
@@ -54,7 +52,6 @@
                         var NumeroPessoa = "&NumeroPessoa=" + recNumeroPessoa;
                         var Nome = "&Nome=" + recNome;
                         var Situacao = "&Situacao=" + recSituacao;
-                        var Situacao2 = "&situacao2=" + recSituacao2;
                         var Sexo = "&Sexo=" + recSexo;
                         var Idade = "&Idade=" + recIdade;
                         var Instrucao = "&Instrucao=" + recInstrucao;
@@ -82,7 +79,6 @@
                                 + Atividade
                                 + Renda
                                 + Viajens
-                                + Situacao2
                                 ;
                         console.log(url);
                         await fetch(url).then((r) => r.json()).then((rj) => {
@@ -98,7 +94,7 @@
                             var Renda = document.createElement("td");
                             var Viajens = document.createElement("td");
                             var Id = document.createElement("td");
-                            var Situacao2 = document.createElement("td");
+                            
 
                             rj.forEach(element => {
                                 Id.textContent = element.id;
@@ -111,12 +107,10 @@
                                 Atividade.textContent = element.setor;
                                 Renda.textContent = element.renda;
                                 Viajens.textContent = element.viajens;
-                                Situacao2.textContent = element.situacao;
-                                tr.appendChild(Id)
+                                tr.appendChild(Id);
                                 tr.appendChild(NumeroPessoa);
                                 tr.appendChild(Nome);
                                 tr.appendChild(Situacao);
-                                tr.appendChild(Situacao2);
                                 tr.appendChild(Sexo);
                                 tr.appendChild(Idade);
                                 tr.appendChild(Instrucao);
@@ -346,10 +340,6 @@
                                 <div class="col-md-1 mb-3">
                                     <label for="recSituacao">Situacao1</label> <input type="text" class="form-control" id="recSituacao" placeholder="" value="">
                                 </div>
-                                <!-- Situacao2 -->
-                                <div class="col-md-1 mb-3">
-                                    <label for="recSituacao2">Situacao1</label> <input type="text" class="form-control" id="recSituacao2" placeholder="" value="">
-                                </div>
                                 <!-- Sexo -->
                                 <div class="col-md-1 mb-3">
                                     <label for="recSexo">Sexo</label> <input type="text"  class="form-control" id="recSexo" placeholder="" value="">
@@ -391,7 +381,6 @@
                                     <th scope="col">NÚMERO</th>
                                     <th scope="col">NOME</th>
                                     <th scope="col">Situacao1</th>
-                                    <th scope="col">Situacao2</th>
                                     <th scope="col">SEXO</th>
                                     <th scope="col">IDADE</th>
                                     <th scope="col">GRAU</th>

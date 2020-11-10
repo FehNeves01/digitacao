@@ -1,12 +1,12 @@
 package model;
 
 public class Moradores {
+
     private int id;
     private String numeroPessoa;
     private String idCasa;
     private String nome;
     private String situacaoFamiliar;
-    private String situacao;
     private String sexo;
     private String idade;
     private String grau;
@@ -14,119 +14,108 @@ public class Moradores {
     private String renda;
     private String viajens;
     private String digitador;
-    
-    public String getSituacao() {
-   return situacao;
-    }
-
-    public void setSituacao(String situacao) {
-   this.situacao = situacao;
-    }
 
     public String getDigitador() {
-   return digitador;
+        return digitador;
     }
 
     public void setDigitador(String digitador) {
-   this.digitador = digitador;
+        this.digitador = digitador;
     }
-    
 
-    
-    
     public int getId() {
-   return id;
+        return id;
     }
 
     public void setId(int id) {
-   this.id = id;
+        this.id = id;
     }
 
     public String getIdCasa() {
-   return idCasa;
+        return idCasa;
     }
 
     public void setIdCasa(String idCasa) {
-   this.idCasa = idCasa;
+        this.idCasa = idCasa;
     }
 
     public String getNome() {
-   return nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-   this.nome = nome;
+        this.nome = nome;
     }
 
     public String getSituacaoFamiliar() {
-   return situacaoFamiliar;
+        return situacaoFamiliar;
     }
 
     public void setSituacaoFamiliar(String situacaoFamiliar) {
-   this.situacaoFamiliar = situacaoFamiliar;
+        this.situacaoFamiliar = situacaoFamiliar;
     }
 
     public String getSexo() {
-   return sexo;
+        return sexo;
     }
 
     public void setSexo(String sexo) {
-   this.sexo = sexo;
+        this.sexo = sexo;
     }
 
     public String getIdade() {
-   return idade;
+        return idade;
     }
 
     public void setIdade(String idade) {
-   this.idade = idade;
+        this.idade = idade;
     }
 
     public String getGrau() {
-   return grau;
+        return grau;
     }
 
     public void setGrau(String grau) {
-   this.grau = grau;
+        this.grau = grau;
     }
 
     public String getSetor() {
-   return setor;
+        return setor;
     }
 
     public void setSetor(String setor) {
-   this.setor = setor;
+        this.setor = setor;
     }
 
     public String getRenda() {
-   return renda;
+        return renda;
     }
 
     public void setRenda(String renda) {
-   this.renda = renda;
+        this.renda = renda;
     }
 
     public String getViajens() {
-   return viajens;
+        return viajens;
     }
 
     public void setViajens(String viajens) {
-   this.viajens = viajens;
+        this.viajens = viajens;
     }
 
     public String getNumeroPessoa() {
-   return numeroPessoa;
+        return numeroPessoa;
     }
 
     public void setNumeroPessoa(String numeroPessoa) {
-   this.numeroPessoa = numeroPessoa;
+        this.numeroPessoa = numeroPessoa;
     }
 
     @Override
     public String toString() {
-   return "Moradores{" + "id=" + id + ", numeroPessoa=" + numeroPessoa + ", idCasa=" + idCasa + ", nome=" + nome + ", situacaoFamiliar=" + situacaoFamiliar + ", situacao=" + situacao + ", sexo=" + sexo + ", idade=" + idade + ", grau=" + grau + ", setor=" + setor + ", renda=" + renda + ", viajens=" + viajens + ", digitador=" + digitador + '}';
+        return "Moradores{" + "id=" + id + ", numeroPessoa=" + numeroPessoa + ", idCasa=" + idCasa + ", nome=" + nome + ", situacaoFamiliar=" + situacaoFamiliar + ", sexo=" + sexo + ", idade=" + idade + ", grau=" + grau + ", setor=" + setor + ", renda=" + renda + ", viajens=" + viajens + ", digitador=" + digitador + '}';
     }
 
     
-     
+
 }
