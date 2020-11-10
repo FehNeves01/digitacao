@@ -151,6 +151,7 @@ public class Apidados extends HttpServlet {
         moradores.setRenda(requisicoes("Renda"));
         moradores.setViajens(requisicoes("Viajens"));
         moradores.setDigitador(requisicoes("digitador"));
+        moradores.setSetorAtividade(requisicoes("setorAtividade"));
         
         listCasa.add(casa);
         listMoradores.add(moradores);
@@ -252,6 +253,7 @@ public class Apidados extends HttpServlet {
         moradores.setRenda(requisicoes("Renda"));
         moradores.setViajens(requisicoes("Viajens"));
         moradores.setId(Integer.parseInt(requisicoes("idViagens")));
+        moradores.setSetorAtividade(requisicoes("setorAtividade"));
         listMoradores.add(moradores);
 
         new DaoMoradores(listMoradores).update(moradores.getIdCasa());

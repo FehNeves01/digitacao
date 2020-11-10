@@ -38,10 +38,11 @@
                         var recIdade = document.getElementById("recIdade").value;
                         var recInstrucao = document.getElementById("recInstrucao").value;
                         var recAtividade = document.getElementById("recAtividade").value;
+                        var recSetorAtividade = document.getElementById("recSetorAtividade").value;
                         var recRenda = document.getElementById("recRenda").value;
                         var recViajens = document.getElementById("recViagens").value;
 
-                        var id = "&id_casa=" + recZona + "_" + recFolha;
+                        var id = "&id_casa=" + recZona + recFolha;
                         var latitude = "&latitude=" + recLatitude;
                         var longitude = "&longitude=" + recLongitude;
                         var zona = "&zona=" + recZona;
@@ -58,6 +59,7 @@
                         var Atividade = "&Atividade=" + recAtividade;
                         var Renda = "&Renda=" + recRenda;
                         var Viajens = "&Viajens=" + recViajens;
+                        var setorAtividade = "&setorAtividade="+ recSetorAtividade;
                         var urlJson;
                         await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
                             urlJson = rj
@@ -79,10 +81,11 @@
                                 + Atividade
                                 + Renda
                                 + Viajens
+                                + setorAtividade
                                 ;
                         console.log(url);
                         await fetch(url).then((r) => r.json()).then((rj) => {
-                            var corpoDaTabela = document.querySelector("tbody");
+                            var corpoDaTabela = document.getElementById("corpoTabelaMoradores");
                             var tr = document.createElement("tr");
                             var NumeroPessoa = document.createElement("td");
                             var Nome = document.createElement("td");
@@ -91,6 +94,7 @@
                             var Idade = document.createElement("td");
                             var Instrucao = document.createElement("td");
                             var Atividade = document.createElement("td");
+                            var setorAtividade = document.createElement("td");
                             var Renda = document.createElement("td");
                             var Viajens = document.createElement("td");
                             var Id = document.createElement("td");
@@ -105,8 +109,10 @@
                                 Idade.textContent = element.idade;
                                 Instrucao.textContent = element.grau;
                                 Atividade.textContent = element.setor;
+                                setorAtividade.textContent = element.setorAtividade;
                                 Renda.textContent = element.renda;
                                 Viajens.textContent = element.viajens;
+                                
                                 tr.appendChild(Id);
                                 tr.appendChild(NumeroPessoa);
                                 tr.appendChild(Nome);
@@ -115,6 +121,8 @@
                                 tr.appendChild(Idade);
                                 tr.appendChild(Instrucao);
                                 tr.appendChild(Atividade);
+                                tr.appendChild(setorAtividade);
+                                tr.appendChild(setorAtividade);
                                 tr.appendChild(Renda);
                                 tr.appendChild(Viajens);
 
@@ -135,7 +143,7 @@
             async function dadosViagens() {
                 if (document.getElementById("recDigitador").value !== "") {
                     if ((document.getElementById("recZona").value !== "") && (document.getElementById("recFolha").value !== "")) {
-                        var id = document.getElementById("recZona").value + "_"
+                        var id = document.getElementById("recZona").value
                                 + document.getElementById("recFolha").value;
                         var recNuPessoas = document.getElementById("recNuPessoas").value;
                         var recVresidencia = document.getElementById("recVresidencia").value;
@@ -234,6 +242,7 @@
                 var recAtividade = document.getElementById("recAtividade").value = "";
                 var recRenda = document.getElementById("recRenda").value = "";
                 var recViajens = document.getElementById("recViagens").value = "";
+                document.getElementById("recSetorAtividade").value = "";
                 document.getElementById("recNumeroPessoa").focus();
             }
             function limparCamposViagens() {
@@ -251,6 +260,15 @@
                 document.getElementById("recNuPessoas").focus();
             }
             function novaPesquisa() {
+                var corpoDaTabelaMoradores = document.getElementById("corpoTabelaMoradores");
+                if(corpoDaTabelaMoradores.parentNode){
+                    corpoDaTabelaMoradores.parentNode.removeChild(corpoDaTabelaMoradores);
+                }
+                var coporDaTabelaViajens = document.getElementById("viajens");
+                
+                if(coporDaTabelaViajens.parentNode){
+                    coporDaTabelaViajens.parentNode.removeChild(coporDaTabelaViajens);
+                }
                 limparCamposPessoas();
                 limparCamposViagens();
 
@@ -353,10 +371,19 @@
                                 <div class="col-md-1 mb-3">
                                     <label for="recInstrucao">Instrucao</label> <input type="text"   class="form-control" id="recInstrucao" placeholder="" value="">
                                 </div>
+                                
                                 <!-- Atividade -->
                                 <div class="col-md-1 mb-3">
-                                    <label for="recAtividade">Atividade</label> <input type="text"   class="form-control" id="recAtividade" placeholder="" value="">
+                                    <label for="recAtividade">S.Atividade</label> <input type="text"   class="form-control" id="recAtividade" placeholder="" value="">
                                 </div>
+                                
+                                <!-- Atividade -->
+                                <div class="col-md-1 mb-3">
+                                    <label for="recAtividade">S.Atividade2</label> <input type="text"   class="form-control" id="recSetorAtividade" placeholder="" value="">
+                                </div>
+                                
+                                
+                                
                                 <!-- Renda -->
                                 <div class="col-md-1 mb-3">
                                     <label for="recRenda">Renda</label> <input type="text"    class="form-control" id="recRenda" placeholder="" value="">	
@@ -380,16 +407,17 @@
                                     <th scope="col">#</th>
                                     <th scope="col">NÚMERO</th>
                                     <th scope="col">NOME</th>
-                                    <th scope="col">Situacao1</th>
+                                    <th scope="col">Situacao</th>
                                     <th scope="col">SEXO</th>
                                     <th scope="col">IDADE</th>
                                     <th scope="col">GRAU</th>
-                                    <th scope="col">SETOR</th>
+                                    <th scope="col">S.ATIVIDADE1</th>
+                                    <th scope="col">S.ATIVIDADE2</th>
                                     <th scope="col">RENDA</th>
                                     <th scope="col">VIAGEM</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="corpoTabelaMoradores">
 
                             </tbody>
                         </table>

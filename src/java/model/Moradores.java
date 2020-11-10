@@ -11,10 +11,21 @@ public class Moradores {
     private String idade;
     private String grau;
     private String setor;
+    private String setorAtividade;
     private String renda;
     private String viajens;
     private String digitador;
 
+    public String getSetorAtividade() {
+        return setorAtividade;
+    }
+
+    public void setSetorAtividade(String setorAtividade) {
+        this.setorAtividade = setorAtividade;
+    }
+
+    
+    
     public String getDigitador() {
         return digitador;
     }

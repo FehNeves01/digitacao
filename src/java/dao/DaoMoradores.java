@@ -42,7 +42,7 @@ public class DaoMoradores extends DAO {
 
     @Override
     public boolean create() {
-        String sql = "INSERT INTO moradores (id_casa, numero_pessoa, nome, situacao_familiar, sexo, idade, grau, setor, renda, viajens, digitador) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO moradores (id_casa, numero_pessoa, nome, situacao_familiar, sexo, idade, grau, setor, renda, viajens, digitador, atividade) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             for (Moradores key : listMoradores) {
                 stmt = con.prepareStatement(sql);
@@ -57,6 +57,7 @@ public class DaoMoradores extends DAO {
                 stmt.setString(9, key.getRenda());
                 stmt.setString(10, key.getViajens());
                 stmt.setString(11, key.getDigitador());
+                stmt.setString(12, key.getSetorAtividade());
                 stmt.executeUpdate();
             }
             return true;
@@ -91,6 +92,7 @@ public class DaoMoradores extends DAO {
                 moradores.setRenda(rs.getString("renda"));
                 moradores.setViajens(rs.getString("viajens"));
                 moradores.setDigitador(rs.getString("digitador"));
+                moradores.setSetorAtividade(rs.getString("atividade"));
                 listMoradores.add(moradores);
             }
             return listMoradores;
@@ -109,7 +111,7 @@ public class DaoMoradores extends DAO {
 
     public boolean update(String idCasa) {
         String sql = "UPDATE moradores SET numero_pessoa = ?, nome = ?, situacao_familiar = ?, sexo = ?, "
-                + "idade = ?, grau = ?, setor = ?, renda = ?, viajens = ?, WHERE id_casa = ? AND id=? ";
+                + "idade = ?, grau = ?, setor = ?, renda = ?, viajens = ?, atividade = ? WHERE id_casa = ? AND id=? ";
         try {
             for (Moradores key : listMoradores) {
                 stmt = con.prepareStatement(sql);
@@ -122,8 +124,9 @@ public class DaoMoradores extends DAO {
                 stmt.setString(7, key.getSetor());
                 stmt.setString(8, key.getRenda());
                 stmt.setString(9, key.getViajens());
-                stmt.setString(10, idCasa);
-                stmt.setInt(11, key.getId());
+                stmt.setString(10, key.getSetorAtividade());
+                stmt.setString(11, idCasa);
+                stmt.setInt(12, key.getId());
                 stmt.executeUpdate();
             }
             return true;
@@ -178,6 +181,7 @@ public class DaoMoradores extends DAO {
                 moradores.setRenda(rs.getString("renda"));
                 moradores.setViajens(rs.getString("viajens"));
                 moradores.setDigitador(rs.getString("digitador"));
+                moradores.setSetorAtividade(rs.getString("atividade"));
                 listMoradores.add(moradores);
             }
             return listMoradores;
@@ -216,6 +220,7 @@ public class DaoMoradores extends DAO {
                 moradores.setRenda(rs.getString("renda"));
                 moradores.setViajens(rs.getString("viajens"));
                 moradores.setDigitador(rs.getString("digitador"));
+                moradores.setSetorAtividade(rs.getString("atividade"));
                 listMoradores.add(moradores);
             }
 
@@ -253,6 +258,7 @@ public class DaoMoradores extends DAO {
                 moradores.setRenda(rs.getString("renda"));
                 moradores.setViajens(rs.getString("viajens"));
                 moradores.setDigitador(rs.getString("digitador"));
+                moradores.setSetorAtividade(rs.getString("atividade"));
                 listMoradores.add(moradores);
             }
             System.out.println("Lista Moradores  " + listMoradores.size());
