@@ -18,16 +18,16 @@ async function pesquisandoManual() {
     var pesquisaZonaManual = document.getElementById("pesquisaZona").value;
     var pesquisaFolhaManual = document.getElementById("pesquisaFolha").value;
     urlJson = await todasAsBuscas("./urlsJSON.json");
-    var idPesquisa = (pesquisaZonaManual + "_" + pesquisaFolhaManual);
+    var idPesquisa = (pesquisaZonaManual + pesquisaFolhaManual);
     var url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaCasa" + "&idCasa=" + idPesquisa;
     dados = await todasAsBuscas(url);
-    
-    
+
+
     url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaMoradores" + "&idCasa=" + idPesquisa;
     dadosMoradores = await todasAsBuscas(url);
     url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaViajens" + "&idCasa=" + idPesquisa;
     dadosViagens = await todasAsBuscas(url);
-    
+
 
     console.log(dados);
     console.log(dadosMoradores);
@@ -42,16 +42,17 @@ function povoarTabelaPesquisa() {
 
 
     var corpoDaTabela = document.getElementById("tabelaPesquisa");
-    var tr = document.createElement("tr");
-
-    var id = document.createElement("td");
-    var latitude = document.createElement("td");
-    var longitude = document.createElement("td");
-    var zona = document.createElement("td");
-    var folha = document.createElement("td");
-    var pontos = document.createElement("td");
 
     for (var i = 0; i < dados.length; i++) {
+        var tr = document.createElement("tr");
+
+        var id = document.createElement("td");
+        var latitude = document.createElement("td");
+        var longitude = document.createElement("td");
+        var zona = document.createElement("td");
+        var folha = document.createElement("td");
+        var pontos = document.createElement("td");
+
         id.textContent = dados[i].id;
         latitude.textContent = dados[i].latitude;
         longitude.textContent = dados[i].longitude;
@@ -70,7 +71,7 @@ function povoarTabelaPesquisa() {
 }
 
 async function povoarTabelaMoradores() {
-    
+
     var corpoDaTabela2 = document.getElementById("tabelaMoradores");
     await dadosMoradores.forEach(key => {
         var tr = document.createElement("tr");
@@ -81,11 +82,12 @@ async function povoarTabelaMoradores() {
         var Idade = document.createElement("td");
         var Instrucao = document.createElement("td");
         var Atividade = document.createElement("td");
+        var setorAtividade = document.createElement("td");
         var Renda = document.createElement("td");
         var Viajens = document.createElement("td");
         var IdPesquisa = document.createElement("td");
         var Id = document.createElement("td");
-       
+
         Id.textContent = key.id;
         NumeroPessoa.textContent = key.numeroPessoa;
         Nome.textContent = key.nome;
@@ -94,9 +96,10 @@ async function povoarTabelaMoradores() {
         Idade.textContent = key.idade;
         Instrucao.textContent = key.grau;
         Atividade.textContent = key.setor;
+        setorAtividade.textContent = key.setorAtividade;
         Renda.textContent = key.renda;
         Viajens.textContent = key.viajens;
-      
+
         tr.appendChild(Id);
         tr.appendChild(NumeroPessoa);
         tr.appendChild(Nome);
@@ -105,6 +108,7 @@ async function povoarTabelaMoradores() {
         tr.appendChild(Idade);
         tr.appendChild(Instrucao);
         tr.appendChild(Atividade);
+        tr.appendChild(setorAtividade);
         tr.appendChild(Renda);
         tr.appendChild(Viajens);
 
@@ -119,7 +123,7 @@ async function povoarTabelaMoradores() {
 async function povoarTabelaViagens() {
     var corpoDaTabela3 = document.getElementById("viajens");
     await dadosViagens.forEach(key => {
-        
+
         var tr = document.createElement("tr");
         var recNuPessoa = document.createElement("td");
         var id = document.createElement("td");
@@ -133,7 +137,7 @@ async function povoarTabelaViagens() {
         var recModo1 = document.createElement("td");
         var recModo2 = document.createElement("td");
         var recCont = document.createElement("td");
-        
+
 
         id.textContent = key.id;
         recNuPessoa.textContent = key.numeroPessoa;
@@ -147,7 +151,7 @@ async function povoarTabelaViagens() {
         recModo.textContent = key.value;
         recModo1.textContent = key.value1;
         recModo2.textContent = key.value2;
-        
+
 
         tr.appendChild(id);
         tr.appendChild(recNuPessoa);
