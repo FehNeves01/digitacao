@@ -17,6 +17,11 @@ async function todasAsBuscas(qualquerBusca) {
 async function pesquisandoManual() {
     var pesquisaZonaManual = document.getElementById("pesquisaZona").value;
     var pesquisaFolhaManual = document.getElementById("pesquisaFolha").value;
+    
+    zerarCorpoTabela("tabelaPesquisa");
+    zerarCorpoTabela("tabelaMoradores");
+    zerarCorpoTabela("viajens");
+    
     urlJson = await todasAsBuscas("./urlsJSON.json");
     var idPesquisa = (pesquisaZonaManual + pesquisaFolhaManual);
     var url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaCasa" + "&idCasa=" + idPesquisa;
@@ -173,4 +178,10 @@ async function povoarTabelaViagens() {
     });
 
 
+}
+function zerarCorpoTabela(id) {
+    var corpoDaTabela = document.getElementById(id).querySelector("tr");
+    if (corpoDaTabela !== null) {
+        corpoDaTabela.parentNode.removeChild(corpoDaTabela);
+    }
 }

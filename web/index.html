@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="css/estilo.css"/>
         <script>
             async function dadosPessoas() {
-                if (document.getElementById("recDigitador").value !== "") {
+                if ((document.getElementById("recDigitador").value).trim() !== "") {
                     if ((document.getElementById("recZona").value !== "") && (document.getElementById("recFolha").value !== "")) {
 
 
@@ -137,10 +137,11 @@
                     }
                 } else {
                     alert("Favor Preencher Nome Digitador");
+                    document.getElementById("recDigitador").focus();
                 }
             }
             async function dadosViagens() {
-                if (document.getElementById("recDigitador").value !== "") {
+                if ((document.getElementById("recDigitador").value).trim() !== "") {
                     if ((document.getElementById("recZona").value !== "") && (document.getElementById("recFolha").value !== "")) {
                         var id = document.getElementById("recZona").value
                                 + document.getElementById("recFolha").value;
@@ -235,6 +236,7 @@
                     }
                 } else {
                     alert("Favor Preencher Nome Digitador");
+                    document.getElementById("recDigitador");
                 }
             }
             function limparCamposPessoas() {
