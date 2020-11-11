@@ -17,11 +17,6 @@ async function todasAsBuscas(qualquerBusca) {
 async function pesquisandoManual() {
     var pesquisaZonaManual = document.getElementById("pesquisaZona").value;
     var pesquisaFolhaManual = document.getElementById("pesquisaFolha").value;
-
-    zerarCorpoTabela("tabelaPesquisa");
-    zerarCorpoTabela("tabelaMoradores");
-    zerarCorpoTabela("viajens");
-
     urlJson = await todasAsBuscas("./urlsJSON.json");
     var idPesquisa = (pesquisaZonaManual + pesquisaFolhaManual);
     var url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaCasa" + "&idCasa=" + idPesquisa;
@@ -40,6 +35,39 @@ async function pesquisandoManual() {
     console.log(dados);
     console.log(dadosMoradores);
     console.log(dadosViagens);
+
+//    var corpoTabelaCasa = document.getElementById("tabelaPesquisa");
+//    if (corpoTabelaCasa.parentNode !== null) {
+//        corpoTabelaCasa.parentNode.removeChild(corpoTabelaCasa);
+//    }
+//    var tableCasa = document.getElementById("tableCasa");
+//    var tbodyTableCasa = document.createElement("tbody");
+//    tbodyTableCasa.id = "tabelaPesquisa";
+//    tableCasa.appendChild(tbodyTableCasa);
+//    
+    var corpoDaTabelaMoradores = document.getElementById("corpoTabelaMoradores");
+    if (corpoDaTabelaMoradores.parentNode) {
+        corpoDaTabelaMoradores.parentNode.removeChild(corpoDaTabelaMoradores);
+    }
+    var tabelaMoradores = document.getElementById("tabelaMoradores");
+    var tbodyTabelaMoradores = document.createElement("tbody");
+    tbodyTabelaMoradores.id = "corpoTabelaMoradores";
+    tabelaMoradores.appendChild(tbodyTabelaMoradores);
+
+    var coporDaTabelaViajens = document.getElementById("viajens");
+    if (coporDaTabelaViajens.parentNode) {
+        coporDaTabelaViajens.parentNode.removeChild(coporDaTabelaViajens);
+    }
+    var tabelaViagens = document.getElementById("tabelaViagens");
+    
+    var tbodyTabelaViagens = document.createElement("tbody");
+    tbodyTabelaViagens.id = "viajens";
+    tabelaViagens.appendChild(tbodyTabelaViagens);
+
+    
+
+
+
 
     povoarTabelaPesquisa();
     povoarTabelaMoradores();
@@ -124,10 +152,6 @@ async function povoarTabelaMoradores() {
         corpoDaTabela2.appendChild(tr);
     });
 }
-
-
-
-
 async function povoarTabelaViagens() {
     var corpoDaTabela3 = document.getElementById("viajens");
     await dadosViagens.forEach(key => {
@@ -178,10 +202,4 @@ async function povoarTabelaViagens() {
     });
 
 
-}
-function zerarCorpoTabela(id) {
-    var corpoDaTabelaMoradores = document.getElementById(id);
-    if (corpoDaTabelaMoradores.parentNode) {
-        corpoDaTabelaMoradores.parentNode.removeChild(corpoDaTabelaMoradores);
-    }
 }

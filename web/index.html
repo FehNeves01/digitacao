@@ -273,11 +273,22 @@
                 if (corpoDaTabelaMoradores.parentNode) {
                     corpoDaTabelaMoradores.parentNode.removeChild(corpoDaTabelaMoradores);
                 }
+                var tabelaMoradores = document.getElementById("tabelaMoradores");
+                var tbodyTabelaMoradores = document.createElement("tbody");
+                tbodyTabelaMoradores.id = "corpoTabelaMoradores";
+                tabelaMoradores.appendChild(tbodyTabelaMoradores);
+                
                 var coporDaTabelaViajens = document.getElementById("viajens");
-
+                
                 if (coporDaTabelaViajens.parentNode) {
                     coporDaTabelaViajens.parentNode.removeChild(coporDaTabelaViajens);
                 }
+                var tabelaViagens = document.getElementById("tabelaViagens");
+                
+                var tbodyTabelaViagens = document.createElement("tbody");
+                tbodyTabelaViagens.id = "viajens";
+                tabelaViagens.appendChild(tbodyTabelaViagens);
+                
                 limparCamposPessoas();
                 limparCamposViagens();
 
@@ -410,7 +421,7 @@
                             </div>
                         </div>
                         <!-- ColocarTable Moradores -->
-                        <table class="table table-sm table-striped">
+                        <table class="table table-sm table-striped" id="tabelaMoradores">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
@@ -441,11 +452,11 @@
 
                                 <!-- Numero Moradores -->
                                 <div class="col-md-2 mb-3">
-                                    <label for="recNuPessoas">Nº Pessoas</label> <input type="text"    class="form-control" id="recNuPessoas" placeholder="" value="">
+                                    <label for="recNuPessoas">Nº Pessoa</label> <input type="text"    class="form-control" id="recNuPessoas" placeholder="" value="">
                                 </div>
                                 <!-- Viagem Residencia -->
                                 <div class="col-md-2 mb-3">
-                                    <label for="recVresidencia">Viagem Residencia</label> <input
+                                    <label for="recVresidencia">1ª Viagem Residencia?</label> <input
                                         type="text" class="form-control" id="recVresidencia"
                                         placeholder="" value="">
                                 </div>
@@ -499,7 +510,7 @@
 
                         </div>
                         <!-- ColocarTable Viagens -->
-                        <table class="table table-sm table-striped">
+                        <table class="table table-sm table-striped" id="tabelaViagens">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
