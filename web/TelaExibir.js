@@ -20,12 +20,15 @@ async function pesquisandoManual() {
     urlJson = await todasAsBuscas("./urlsJSON.json");
     var idPesquisa = (pesquisaZonaManual + pesquisaFolhaManual);
     var url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaCasa" + "&idCasa=" + idPesquisa;
+    console.log(url);
     dados = await todasAsBuscas(url);
 
 
     url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaMoradores" + "&idCasa=" + idPesquisa;
+    console.log(url);
     dadosMoradores = await todasAsBuscas(url);
-    url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaViajens" + "&idCasa=" + idPesquisa;
+    url = urlJson.exportar.apidados + "?acao=buscarPesquisaSelecionadaViajensTodas" + "&idCasa=" + idPesquisa;
+    console.log(url);
     dadosViagens = await todasAsBuscas(url);
 
 

@@ -327,8 +327,8 @@ public class DaoViajens extends DAO {
                 + "mod = ?, "
                 + "mod1 = ?, "
                 + "mod2 = ?, "
-                + "cont = ? "
-                + "numero_viagem = ?"
+                + "cont = ?, "
+                + "numero_viagem = ? "
                 + "WHERE id_casa = ? AND id = ?";
         try {
             for (Viajens key : listViajens) {

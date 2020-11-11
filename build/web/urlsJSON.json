@@ -1,8 +1,8 @@
 {
-    "exportar": {
+    "xxx": {
         "apidados": "http://localhost:8080/Digitacao/apidados"
     },
-    "xxx": {
+    "exportar": {
         "apidados": "http://18.229.64.50/digitacao/apidados"
     }
 }

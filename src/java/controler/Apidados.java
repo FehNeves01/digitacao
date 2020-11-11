@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import connection.CreateDataBase;
 import dao.DaoCasa;
 import dao.DaoMoradores;
 import dao.DaoViajens;
@@ -63,7 +62,6 @@ public class Apidados extends HttpServlet {
     private void processRequest() throws IOException {
 
 //        new CreateDataBase();
-
         switch (request.getParameter("acao")) {
             case "cadCasaMoradores":
                 cadastraCasasEmoradores();
@@ -76,6 +74,9 @@ public class Apidados extends HttpServlet {
                 break;
             case "buscarPesquisaSelecionadaViajens":
                 buscarPesquisaSelecionadaViajens();
+                break;
+            case "buscarPesquisaSelecionadaViajensTodas":
+                buscarPesquisaSelecionadaViajensTodas();
                 break;
             case "buscarPesquisaSelecionadaMoradores":
                 buscarPesquisaSelecionadaMoradores();
@@ -152,7 +153,7 @@ public class Apidados extends HttpServlet {
         moradores.setViajens(requisicoes("Viajens"));
         moradores.setDigitador(requisicoes("digitador"));
         moradores.setSetorAtividade(requisicoes("setorAtividade"));
-        
+
         listCasa.add(casa);
         listMoradores.add(moradores);
 
@@ -185,7 +186,7 @@ public class Apidados extends HttpServlet {
 
         ArrayList<Viajens> listForJsonViajens = (ArrayList<Viajens>) new DaoViajens().read(viajens.getIdCasa());
 
-         EnviaJSON.enviaJson(response, listForJsonViajens);
+        EnviaJSON.enviaJson(response, listForJsonViajens);
     }
 
     private void buscaPesquisas() {
@@ -196,8 +197,13 @@ public class Apidados extends HttpServlet {
     private void buscarPesquisaSelecionadaViajens() {
         String parametroIdCasa = requisicoes("idCasa");
         String parametroNumeroPessoa = requisicoes("numPessoa");
-        ArrayList<Viajens> listForJsonViajens = (ArrayList<Viajens>) new DaoViajens().readNumeroViagem(parametroIdCasa,parametroNumeroPessoa);
-       EnviaJSON.enviaJson(response, listForJsonViajens);
+        ArrayList<Viajens> listForJsonViajens = (ArrayList<Viajens>) new DaoViajens().readNumeroViagem(parametroIdCasa, parametroNumeroPessoa);
+        EnviaJSON.enviaJson(response, listForJsonViajens);
+    }
+    private void buscarPesquisaSelecionadaViajensTodas() {
+        String parametroIdCasa = requisicoes("idCasa");
+        ArrayList<Viajens> listForJsonViajens = (ArrayList<Viajens>) new DaoViajens().read(parametroIdCasa);
+        EnviaJSON.enviaJson(response, listForJsonViajens);
     }
 
     private void buscarPesquisaSelecionadaMoradores() {
@@ -218,7 +224,7 @@ public class Apidados extends HttpServlet {
         String parametroPessoa = (requisicoes("numeroPessoaSelecionada"));
         String parametroPesquisa = (requisicoes("numeroPesquisaSelecionada"));
 
-        listMoradores =(ArrayList<Moradores>) (List<Moradores>) new DaoMoradores().read(parametroPesquisa, parametroPessoa);
+        listMoradores = (ArrayList<Moradores>) (List<Moradores>) new DaoMoradores().read(parametroPesquisa, parametroPessoa);
         EnviaJSON.enviaJson(response, listMoradores);
     }
 
@@ -267,6 +273,22 @@ public class Apidados extends HttpServlet {
     private void atualizaCadViagens() {
         listViajens = new ArrayList<>();
         viajens = new Viajens();
+
+        System.out.println(requisicoes("recNuPessoas"));
+        System.out.println(requisicoes("id_casa"));
+        System.out.println(requisicoes("recVresidencia"));
+        System.out.println(requisicoes("recLocal"));
+        System.out.println(requisicoes("recSaida"));
+        System.out.println(requisicoes("recDestino"));
+        System.out.println(requisicoes("recDestZona"));
+        System.out.println(requisicoes("recMot"));
+        System.out.println(requisicoes("recModo"));
+        System.out.println(requisicoes("recModo1"));
+        System.out.println(requisicoes("recModo2"));
+        System.out.println(requisicoes("recCont"));
+        System.out.println(requisicoes("recIdViagens"));
+        System.out.println(requisicoes("numeroViagem"));
+
         viajens.setNumeroPessoa(requisicoes("recNuPessoas"));
         viajens.setIdCasa(requisicoes("id_casa"));
         viajens.setViajensResidencia(requisicoes("recVresidencia"));
@@ -291,18 +313,18 @@ public class Apidados extends HttpServlet {
     }
 
     private void buscasDadosCasas() {
-         listCasa = (ArrayList<Casa>) (List<Casa>) new DaoCasa().read();
+        listCasa = (ArrayList<Casa>) (List<Casa>) new DaoCasa().read();
         EnviaJSON.enviaJson(response, listCasa);
 
     }
 
     private void buscaDadosMoradores() {
-     listMoradores = (ArrayList<Moradores>) (List<Moradores>) new DaoMoradores().read();
+        listMoradores = (ArrayList<Moradores>) (List<Moradores>) new DaoMoradores().read();
         EnviaJSON.enviaJson(response, listMoradores);
     }
 
     private void buscaDadosViagensBanco() {
-        listViajens  = (List <Viajens>) new DaoViajens().read();
+        listViajens = (List<Viajens>) new DaoViajens().read();
         EnviaJSON.enviaJson(response, listViajens);
     }
 

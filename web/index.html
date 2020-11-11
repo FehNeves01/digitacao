@@ -59,7 +59,7 @@
                         var Atividade = "&Atividade=" + recAtividade;
                         var Renda = "&Renda=" + recRenda;
                         var Viajens = "&Viajens=" + recViajens;
-                        var setorAtividade = "&setorAtividade="+ recSetorAtividade;
+                        var setorAtividade = "&setorAtividade=" + recSetorAtividade;
                         var urlJson;
                         await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
                             urlJson = rj
@@ -98,7 +98,7 @@
                             var Renda = document.createElement("td");
                             var Viajens = document.createElement("td");
                             var Id = document.createElement("td");
-                            
+
 
                             rj.forEach(element => {
                                 Id.textContent = element.id;
@@ -112,7 +112,7 @@
                                 setorAtividade.textContent = element.setorAtividade;
                                 Renda.textContent = element.renda;
                                 Viajens.textContent = element.viajens;
-                                
+
                                 tr.appendChild(Id);
                                 tr.appendChild(NumeroPessoa);
                                 tr.appendChild(Nome);
@@ -172,7 +172,7 @@
                                 + "&recCont=" + recCont
                                 + "&digitador=" + recDigitador
                                 + "&numeroViagem=" + recNumViagem;
-                ;
+                        ;
                         var urlJson;
                         await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
                             urlJson = rj
@@ -251,6 +251,7 @@
                 document.getElementById("recNumeroPessoa").focus();
             }
             function limparCamposViagens() {
+                var recNumViagens = document.getElementById("recNumViagem").value="";
                 var recNuPessoas = document.getElementById("recNuPessoas").value = "";
                 var recVresidencia = document.getElementById("recVresidencia").value = "";
                 var recLocal = document.getElementById("recLocal").value = "";
@@ -262,17 +263,17 @@
                 var recModo1 = document.getElementById("recModo1").value = "";
                 var recModo2 = document.getElementById("recModo2").value = "";
                 var recCont = document.getElementById("recCont").value = "";
-                var recIdViagens = document.getElementById("recIdViagens").value = "";
-                document.getElementById("recIdViagens").focus();
+//                var recIdViagens = document.getElementById("recIdViagens").value = "";
+                document.getElementById("recNumViagem").focus();
             }
             function novaPesquisa() {
                 var corpoDaTabelaMoradores = document.getElementById("corpoTabelaMoradores");
-                if(corpoDaTabelaMoradores.parentNode){
+                if (corpoDaTabelaMoradores.parentNode) {
                     corpoDaTabelaMoradores.parentNode.removeChild(corpoDaTabelaMoradores);
                 }
                 var coporDaTabelaViajens = document.getElementById("viajens");
-                
-                if(coporDaTabelaViajens.parentNode){
+
+                if (coporDaTabelaViajens.parentNode) {
                     coporDaTabelaViajens.parentNode.removeChild(coporDaTabelaViajens);
                 }
                 limparCamposPessoas();
@@ -377,19 +378,19 @@
                                 <div class="col-md-1 mb-3">
                                     <label for="recInstrucao">Instrucao</label> <input type="text"   class="form-control" id="recInstrucao" placeholder="" value="">
                                 </div>
-                                
+
                                 <!-- Atividade -->
                                 <div class="col-md-2 mb-3">
                                     <label for="recAtividade">S.Atividade</label> <input type="text"   class="form-control" id="recAtividade" placeholder="" value="">
                                 </div>
-                                
+
                                 <!-- Atividade -->
                                 <div class="col-md-2 mb-3">
                                     <label for="recAtividade">S.Atividade2</label> <input type="text"   class="form-control" id="recSetorAtividade" placeholder="" value="">
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <!-- Renda -->
                                 <div class="col-md-1 mb-3">
                                     <label for="recRenda">Renda</label> <input type="text"    class="form-control" id="recRenda" placeholder="" value="">	
@@ -435,7 +436,7 @@
                                     <label for="recNumViagem">Nº Viagem</label> 
                                     <input type="text" class="form-control" id="recNumViagem" placeholder="" value="">
                                 </div>
-                                
+
                                 <!-- Numero Moradores -->
                                 <div class="col-md-2 mb-3">
                                     <label for="recNuPessoas">Nº Pessoas</label> <input type="text"    class="form-control" id="recNuPessoas" placeholder="" value="">
@@ -535,7 +536,7 @@
                 <br>
                 <br>
                 <center>
-             
+
                 </center>
             </div>
         </div>
