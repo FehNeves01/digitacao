@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: aqua;
+            overflow: hidden;
+        }
+
+        .altura-toda {
+            height: 100vh !important;
+        }
+
+        .area-input {
+            overflow-y: scroll;
+        }
+
+        .area-table {
+            overflow-y: scroll;
+            overflow-x: unset;
+            padding: auto;
+        }
+
+        input {
+            opacity: 0.7;
+        }
+
+        .div-tabela {
+            width: 100vh;
+            height: 98vh !important;
+            margin-top: 100px;
+        }
+        th,td{
+            width: 100px !important;
+            font-size: 10px;
+            margin: auto !important;
+            
+        }
+    </style>
+    <script>
+        function salvarPesquisa() {
+            alert("Teste")
+        }
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid ">
+        <div class="row ">
+            <div class="col-md-2 altura-toda area-input">
+                <div class="row">
+                    <div class="col-md-12 py-1">
+                        <input type="numeric" class="form-control" id="recMacroZonaDiretor"
+                            placeholder="Macro Zona Plano Diretor" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recZona" placeholder="Zona" aria-label="Zona"
+                            value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recPopulacaoIbge" placeholder="População Ibge"
+                            aria-label="População Ibge" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recNumDomicilio" placeholder="Número Domicilio"
+                            value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recHabDomicilio" placeholder="Hab. Por Domicílio"
+                            value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recPopLevantamentoRendaPico"
+                            placeholder="População Total Levantamento Renda Pico" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosMeioSalario"
+                            placeholder="Pessoas 10 anos ou mais até 1/2" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosMeioSalarioAum"
+                            placeholder="Pessoas 10 anos ou mais até 1/2 a 1" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosUmAdois"
+                            placeholder="Pessoas 10 anos ou mais até 1 a 2" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosDoisAtres"
+                            placeholder="Pessoas 10 anos ou mais até 2 a 3" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosTresAcinco"
+                            placeholder="Pessoas 10 anos ou mais até 3 a 5" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosCincoAdez"
+                            placeholder="Pessoas 10 anos ou mais até 5 a 10" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosDezAquinze"
+                            placeholder="Pessoas 10 anos ou mais até 10 a 15" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosQuinzeAvinte"
+                            placeholder="Pessoas 10 anos ou mais até 15 a 20" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnos"
+                            placeholder="Pessoas 10 anos ou mais de 20" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosSemRedimento"
+                            placeholder="Pessoas Dez Anos ou mais S/ Redimento" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recDezAnosComRendimentoESemRedimento"
+                            placeholder="Pessoas Dez Anos ou mais com ou S/ redimento" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <input type="numeric" class="form-control" id="recMenoresDezAnos"
+                            placeholder="Menores de Dez Anos" value="">
+                    </div>
+                    <div class="col-md-12   py-1">
+                        <textarea class="form-control" id="macroZonaDiretor" placeholder="Setores Censítarios"
+                            value=""></textarea>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary btn-lg btn-block" style="font-size: 13px" id="btnPessoa"
+                            onclick="salvarPesquisa()"> Salvar Pesquisa
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 altura-toda  ">
+                <div class="container div-tabela area-table">
+                    <table class="table table-sm table-striped" id="tabela">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">MACRO ZONA DIRETOR</th>
+                                <th scope="col">ZONA</th>
+                                <th scope="col">POPULAÇÃO IBGE</th>
+                                <th scope="col">Nº DOMICÍLIO/</th>
+                                <th scope="col">HAB. DOMICÍLIO/th>
+                                <th scope="col">POPULAÇÃO TOTAL RENDA PICO</th>
+                                <th scope="col">1/2 SALÁRIO</th>
+                                <th scope="col">1/2 A 1 SALÁRIO</th>
+                                <th scope="col">1 A 2 SALÁRIO</th>
+                                <th scope="col">2 A 3 SALÁRIO</th>
+                                <th scope="col">3 A 5 SALÁRIO</th>
+                                <th scope="col">5 A 10 SALÁRIO</th>
+                                <th scope="col">10 A 15 SALÁRIO</th>
+                                <th scope="col">15 A 20 SALÁRIO</th>
+                                <th scope="col">MAIS DE 20 SALÁRIO</th>
+                                <th scope="col">COM OU SEM RENDIMENTO</th>
+                                <th scope="col">MENORES DE 1O ANOS</th>
+                                <th scope="col">CENTORES SENCITÁRIOS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpoTabela">
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                
+                              </tr>
+                          
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
