@@ -1,6 +1,7 @@
 {
     "exportar": {
-        "apidados": "http://localhost:8080/Digitacao/apidados"
+        "apidados": "http://localhost:8080/Digitacao/apidados",
+        "apiformulario": "http://localhost:8080/Digitacao/apiformularios"
     },
     "as": {
         "apidados": "http://18.229.64.50/digitacao/apidados"
