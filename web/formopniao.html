@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Opnião</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: aqua;
+            overflow: hidden;
+        }
+
+        .altura-toda {
+            height: 100vh !important;
+        }
+
+        .area-input {
+            overflow-y: scroll;
+        }
+
+        .area-table {
+            overflow-y: scroll;
+            overflow-x: unset;
+            padding: auto;
+        }
+
+        input {
+            opacity: 0.7;
+        }
+
+        .div-tabela {
+            width: 100vh;
+            height: 98vh !important;
+            margin-top: 5px;
+            overflow-y: scroll;
+        }
+
+        th,
+        td {
+            width: 100px !important;
+            font-size: 10px;
+            margin: auto !important;
+
+        }
+    </style>
+    <script>
+
+
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body onload="primeiraAcaoDaTela()">
+
+
+    <div class="container-fluid ">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">OPNIÃO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <!-- <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Cadastrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="editar.html">Editar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exibir.html">Exibir Todos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exibir-pesquisas.html">Exibir Pesquisas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exibir-moradores.html">Exibir Moradores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exibir-viagens.html">Exibir Viagens</a>
+                    </li>
+                </ul> -->
+            </div>
+            <div class="form-inline">
+                <!-- <input class="form-control input-barra my-2" id="recCidade" placeholder="Cidade" aria-label="City"> -->
+                <!-- <button class="btn btn-outline-success my-2 my-sm-0" onclick="btnExcluir()">Pesquisar</button> -->
+            </div>
+        </nav>
+        <div class="row ">
+            <div class="col-md-2 altura-toda area-input">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12 py-1">
+                            <input type="numeric" class="form-control" id="recNumFormulario"
+                                placeholder="Num. Formulario" value="">
+                        </div>
+                        <div class="col-md-12 py-1">
+                            <input type="numeric" class="form-control" id="recData" placeholder="Data" value="">
+                        </div>
+                        <div class="col-md-12 py-1">
+                            <input type="numeric" class="form-control" id="recHoraEntr" placeholder="Hora Entrada"
+                                value="">
+                        </div>
+                        <div class="col-md-12 py-1">
+                            <input type="numeric" class="form-control" id="recHoraViag" placeholder="Hora Viagem"
+                                value="">
+                        </div>
+
+
+                        <div class="col-md-12 py-1">
+                            <input type="numeric" class="form-control" id="recLinha" placeholder="Linha" value="">
+                        </div>
+
+
+                        <div class="col-md-12 py-1">
+                            <input type="numeric" class="form-control" id="rec1" placeholder="1" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec2" placeholder="2" aria-label="Zona"
+                                value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec3" placeholder="3"
+                                aria-label="População Ibge" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec4" placeholder="4" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec5" placeholder="5" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec6" placeholder="6" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec7" placeholder="7" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec8" placeholder="8" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec9" placeholder="9" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec10" placeholder="10" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec11" placeholder="11" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec12" placeholder="12" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec13" placeholder="13" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec14" placeholder="14" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec15" placeholder="15" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec16" placeholder="16" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec17" placeholder="17" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input type="numeric" class="form-control" id="rec18" placeholder="18" value="">
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input class="form-control" id="rec19" placeholder="19" value=""></input>
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input class="form-control" id="rec20" placeholder="20" value=""></input>
+                        </div>
+                        <div class="col-md-12   py-1">
+                            <input class="form-control" id="rec21" placeholder="21" value=""></input>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary btn-lg btn-block" style="font-size: 13px" id="btnCadastra"
+                                onclick="controlandoPagina()"> Salvar Opnião
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 altura-toda  ">
+                <div class="container-fluid div-tabela area-table">
+                    <table class="table table-sm table-striped " id="tabela">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">NUM. FORM</th>
+                                <th scope="col">DATA</th>
+                                <th scope="col">HR. ENTRADA</th>
+                                <th scope="col">HR. VIAGEM</th>
+                                <th scope="col">LINHA</th>
+                                <th scope="col">1</th>
+                                <th scope="col">2</th>
+                                <th scope="col">3 </th>
+                                <th scope="col">4</th>
+                                <th scope="col">5</th>
+                                <th scope="col">6</th>
+                                <th scope="col">7</th>
+                                <th scope="col">8</th>
+                                <th scope="col">9</th>
+                                <th scope="col">10 </th>
+                                <th scope="col">11 </th>
+                                <th scope="col">12 </th>
+                                <th scope="col">13 </th>
+                                <th scope="col">14 </th>
+                                <th scope="col">15 </th>
+                                <th scope="col">16 </th>
+                                <th scope="col">17 </th>
+                                <th scope="col">18</th>
+                                <th scope="col">19 </th>
+                                <th scope="col">20 </th>
+                                <th scope="col">21</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpoTabela">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <script>
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="TelaOpniao.js"></script>
+</body>
+
+</html>

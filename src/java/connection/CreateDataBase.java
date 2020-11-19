@@ -88,3 +88,60 @@ public class CreateDataBase {
    }
     }
 }
+/*
+create table renda (
+    id serial primary key, 
+    macrozona text not null,
+    zona text not null, 
+    populaibge text not null,
+    numdomicilio text not null,
+    habitantedomicilio text not null,
+    populatotal text not null,
+    meiosalario text not null,
+    meio_a_um text not null,
+    um_a_dois text not null,
+    dois_a_tres text not null,
+    tres_a_cinco text not null,
+    cinco_a_dez text not null,
+    dez_a_quinze text not null,
+    quinze_a_vinte text not null,
+    semredimento text not null,
+    com_ou_semredimento text not null,
+    menores_dezanos text not null,
+    censitarios text not null
+);
+
+
+
+
+create table formopniao (
+    id serial primary key,
+    numformulario text not null,
+    data text,
+    hora text,
+    horaviagem text,
+    linha text,
+    um text,
+    dois text,
+    tres text,
+    quatro text,
+    cinco text,
+    sete text,
+    oito text,
+    nove text,
+    dez text,
+    onze text,
+    doze text,
+    treze text,
+    quatorze text,
+    quinze text,
+    dezesseis text,
+    dezessete text,
+    dezoito text,
+    dezenove text,
+    vinte text,
+    vinteeum text 
+);
+
+
+*/

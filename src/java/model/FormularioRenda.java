@@ -1,6 +1,9 @@
 
 package model;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class FormularioRenda {
     private int id;
     private String macroZonaDiretor;
@@ -22,6 +25,27 @@ public class FormularioRenda {
     private String comRedimento;
     private String menoresDezAnos;
     private String censitarios;
+    private int ano ;
+    private String cidade;
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    
+ 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+    
 
     public int getId() {
         return id;
@@ -185,8 +209,9 @@ public class FormularioRenda {
 
     @Override
     public String toString() {
-        return "FormularioRenda{" + "id=" + id + ", macroZonaDiretor=" + macroZonaDiretor + ", zona=" + zona + ", populacaoIbge=" + populacaoIbge + ", numIBGE=" + numIBGE + ", habitacaoDomicilio=" + habitacaoDomicilio + ", levantamentoRendaPico=" + levantamentoRendaPico + ", meioSalario=" + meioSalario + ", meioSalarioAum=" + meioSalarioAum + ", umSalarioAdois=" + umSalarioAdois + ", doisSalarioAtres=" + doisSalarioAtres + ", tresSalarioAcinco=" + tresSalarioAcinco + ", cincoSalarioAdez=" + cincoSalarioAdez + ", dezSalarioAquinze=" + dezSalarioAquinze + ", quinzeSalarioAvinte=" + quinzeSalarioAvinte + ", dezAnos=" + dezAnos + ", semRedimento=" + semRedimento + ", comRedimento=" + comRedimento + ", menoresDezAnos=" + menoresDezAnos + ", censitarios=" + censitarios + '}';
+        return "FormularioRenda{" + "id=" + id + ", macroZonaDiretor=" + macroZonaDiretor + ", zona=" + zona + ", populacaoIbge=" + populacaoIbge + ", numIBGE=" + numIBGE + ", habitacaoDomicilio=" + habitacaoDomicilio + ", levantamentoRendaPico=" + levantamentoRendaPico + ", meioSalario=" + meioSalario + ", meioSalarioAum=" + meioSalarioAum + ", umSalarioAdois=" + umSalarioAdois + ", doisSalarioAtres=" + doisSalarioAtres + ", tresSalarioAcinco=" + tresSalarioAcinco + ", cincoSalarioAdez=" + cincoSalarioAdez + ", dezSalarioAquinze=" + dezSalarioAquinze + ", quinzeSalarioAvinte=" + quinzeSalarioAvinte + ", dezAnos=" + dezAnos + ", semRedimento=" + semRedimento + ", comRedimento=" + comRedimento + ", menoresDezAnos=" + menoresDezAnos + ", censitarios=" + censitarios + ", ano=" + ano + ", cidade=" + cidade + '}';
     }
+
     
     
 }

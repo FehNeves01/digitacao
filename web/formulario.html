@@ -35,28 +35,63 @@
         .div-tabela {
             width: 100vh;
             height: 98vh !important;
-            margin-top: 100px;
+            margin-top: 5px;
+            overflow-y: scroll;
         }
-        th,td{
+
+        th,
+        td {
             width: 100px !important;
             font-size: 10px;
             margin: auto !important;
-            
+
         }
     </style>
     <script>
-       
-        
+
+
     </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
-<body>
-    
+<body onload="primeiraAcaoDaTela()">
+
 
     <div class="container-fluid ">
-        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">Digitação</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Cadastrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="editar.html">Editar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exibir.html">Exibir Todos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exibir-pesquisas.html">Exibir Pesquisas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exibir-moradores.html">Exibir Moradores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exibir-viagens.html">Exibir Viagens</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-inline">
+                <input class="form-control input-barra my-2" id="recCidade" placeholder="Cidade" aria-label="City">
+                <!-- <button class="btn btn-outline-success my-2 my-sm-0" onclick="btnExcluir()">Pesquisar</button> -->
+            </div>
+        </nav>
         <div class="row ">
             <div class="col-md-2 altura-toda area-input">
                 <div class="row">
@@ -138,17 +173,19 @@
                     </div>
                     <div class="col-md-12">
                         <button class="btn btn-primary btn-lg btn-block" style="font-size: 13px" id="btnPessoa"
-                            onclick="salvarPesquisa()"> Salvar Pesquisa
+                            onclick="controlandoPagina()"> Salvar Pesquisa
                         </button>
                     </div>
                 </div>
             </div>
             <div class="col-md-10 altura-toda  ">
-                <div class="container div-tabela area-table">
-                    <table class="table table-sm table-striped" id="tabela">
+                <div class="container-fluid div-tabela area-table">
+                    <table class="table table-sm table-striped " id="tabela">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">ANO</th>
+                                <th scope="col">CIDADE</th>
                                 <th scope="col">MACRO ZONA DIRETOR</th>
                                 <th scope="col">ZONA</th>
                                 <th scope="col">POPULAÇÃO IBGE</th>
@@ -164,35 +201,13 @@
                                 <th scope="col">10 A 15 SALÁRIO</th>
                                 <th scope="col">15 A 20 SALÁRIO</th>
                                 <th scope="col">MAIS DE 20 SALÁRIO</th>
+                                <th scope="col">SEM RENDIMENTO</th>
                                 <th scope="col">COM OU SEM RENDIMENTO</th>
                                 <th scope="col">MENORES DE 1O ANOS</th>
                                 <th scope="col">CENTORES SENCITÁRIOS</th>
                             </tr>
                         </thead>
                         <tbody id="corpoTabela">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                
-                              </tr>
-                          
                         </tbody>
                     </table>
                 </div>
@@ -202,9 +217,9 @@
 
     </div>
     </div>
-    
+
     <script>
-         
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -216,7 +231,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-        <script src="TelaFormulario.js"></script>
+    <script src="TelaFormulario.js"></script>
 </body>
 
 </html>
