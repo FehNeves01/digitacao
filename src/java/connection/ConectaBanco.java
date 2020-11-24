@@ -30,7 +30,7 @@ public class ConectaBanco {
       url = props.getProperty("dbUrl" + i);
       user = props.getProperty("dbUser" + i);
       password = props.getProperty("dbSenha" + i);
-      System.out.println(user);
+      
   } catch (java.io.FileNotFoundException ex) {
 
   }

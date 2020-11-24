@@ -25,7 +25,6 @@ public class NewConectaBanco {
   dbUrl = login.url;
   dbUser = login.user;
   dbSenha = login.password;
-  System.out.print(dbUser);
   for (int i = 0; i < 5; i++) {
       try {
      return DriverManager.getConnection(dbUrl, dbUser, dbSenha);

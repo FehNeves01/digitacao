@@ -34,24 +34,75 @@ public class DaoViajens extends DAO {
     @Override
     public boolean create() {
         String sql = "INSERT INTO viajens (id_casa, numero_pessoa, viajen_residencia, local, hora, destino,  zona, mot, mod, mod1, mod2, cont, digitador,numero_viagem) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String verificaSql = "select * from viajens where id_casa= ? and numero_pessoa= ? and viajen_residencia= ? and local= ? and hora= ? and destino= ? and  zona= ? and mot= ? and mod= ? and mod1= ? and mod2= ? and cont= ? and digitador= ? and numero_viagem=?";
         try {
             for (Viajens key : listViajens) {
-                stmt = con.prepareStatement(sql);
-                stmt.setString(1, key.getIdCasa());
-                stmt.setString(2, key.getNumeroPessoa());
-                stmt.setString(3, key.getViajensResidencia());
-                stmt.setString(4, key.getLocal());
-                stmt.setString(5, key.getHora());
-                stmt.setString(6, key.getDestino());
-                stmt.setString(7, key.getZona());
-                stmt.setString(8, key.getMot());
-                stmt.setString(9, key.getValue());
-                stmt.setString(10, key.getValue1());
-                stmt.setString(11, key.getValue2());
-                stmt.setString(12, key.getCont());
-                stmt.setString(13, key.getDigitador());
-                stmt.setString(14, key.getNumeroViagem());
-                stmt.executeUpdate();
+                stmt = con.prepareStatement(verificaSql);
+                stmt.setString(1, key.getIdCasa().trim());
+                stmt.setString(2, key.getNumeroPessoa().trim());
+                stmt.setString(3, key.getViajensResidencia().trim());
+                stmt.setString(4, key.getLocal().trim());
+                stmt.setString(5, key.getHora().trim());
+                stmt.setString(6, key.getDestino().trim());
+                stmt.setString(7, key.getZona().trim());
+                stmt.setString(8, key.getMot().trim());
+                stmt.setString(9, key.getValue().trim());
+                stmt.setString(10, key.getValue1().trim());
+                stmt.setString(11, key.getValue2().trim());
+                stmt.setString(12, key.getCont().trim());
+                stmt.setString(13, key.getDigitador().trim());
+                stmt.setString(14, key.getNumeroViagem().trim());
+                
+                
+                rs = stmt.executeQuery();
+                if (rs.next()) {
+                    System.out.println("Viagem ja Cadastrada :: " + key.getIdCasa() + " || "
+                            + key.getNumeroPessoa() + " || "
+                            + key.getViajensResidencia() + " || "
+                            + key.getLocal() + " || "
+                            + key.getHora() + " || "
+                            + key.getDestino() + " || "
+                            + key.getZona() + " || "
+                            + key.getMot() + " || "
+                            + key.getValue() + " || "
+                            + key.getValue1() + " || "
+                            + key.getValue2() + " || "
+                            + key.getCont() + " || "
+                            + key.getDigitador() + " || "
+                            + key.getNumeroViagem() + " || ");
+                } else {
+                    System.out.println("Nova Viagem Cadastrada :: " + key.getIdCasa() + " || "
+                            + key.getNumeroPessoa() + " || "
+                            + key.getViajensResidencia() + " || "
+                            + key.getLocal() + " || "
+                            + key.getHora() + " || "
+                            + key.getDestino() + " || "
+                            + key.getZona() + " || "
+                            + key.getMot() + " || "
+                            + key.getValue() + " || "
+                            + key.getValue1() + " || "
+                            + key.getValue2() + " || "
+                            + key.getCont() + " || "
+                            + key.getDigitador() + " || "
+                            + key.getNumeroViagem() + " || ");
+                    stmt = con.prepareStatement(sql);
+                    stmt.setString(1, key.getIdCasa().trim());
+                    stmt.setString(2, key.getNumeroPessoa().trim());
+                    stmt.setString(3, key.getViajensResidencia().trim());
+                    stmt.setString(4, key.getLocal().trim());
+                    stmt.setString(5, key.getHora().trim());
+                    stmt.setString(6, key.getDestino().trim());
+                    stmt.setString(7, key.getZona().trim());
+                    stmt.setString(8, key.getMot().trim());
+                    stmt.setString(9, key.getValue().trim());
+                    stmt.setString(10, key.getValue1().trim());
+                    stmt.setString(11, key.getValue2().trim());
+                    stmt.setString(12, key.getCont().trim());
+                    stmt.setString(13, key.getDigitador().trim());
+                    stmt.setString(14, key.getNumeroViagem().trim());
+                    stmt.executeUpdate();
+                }
+
             }
             return true;
         } catch (SQLException ex) {
@@ -108,6 +159,7 @@ public class DaoViajens extends DAO {
     public boolean delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     public void delete(String idCasa) {
         String sql = "DELETE FROM viajens WHERE id_casa = ?";
         try {
@@ -117,7 +169,7 @@ public class DaoViajens extends DAO {
             System.out.println(executeUpdate);
         } catch (SQLException ex) {
             Logger.getLogger(DaoMoradores.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         } finally {
             NewConectaBanco.closeConneciton(con, stmt, rs);
         }
@@ -160,7 +212,6 @@ public class DaoViajens extends DAO {
 
     }
 
- 
     public List<?> read(String idCasa, String numeroViagem, String numPessoa) {
         List<Viajens> list = new ArrayList<>();
         String sql = "SELECT * FROM viajens where id_casa = ? and numero_viagem = ? and numero_pessoa = ? ";
@@ -199,7 +250,8 @@ public class DaoViajens extends DAO {
         }
 
     }
-    public List<?> readNumeroViagem(String idCasa,  String numPessoa) {
+
+    public List<?> readNumeroViagem(String idCasa, String numPessoa) {
         List<Viajens> list = new ArrayList<>();
         String sql = "SELECT * FROM viajens where id_casa = ? and numero_pessoa = ? ";
         Viajens viajens;
@@ -236,6 +288,7 @@ public class DaoViajens extends DAO {
         }
 
     }
+
     public List<?> readed(String idCasa, String numeroViagem) {
         List<Viajens> list = new ArrayList<>();
         String sql = "SELECT * FROM viajens where id_casa = ? and numero_viagem = ? ";

@@ -27,6 +27,13 @@ public class DaoCasa extends DAO {
         rs = null;
     }
 
+    public DaoCasa(Casa casa) {
+        this.casa = casa;
+        con = NewConectaBanco.getConnection();
+        stmt = null;
+        rs = null;
+    }
+
     public DaoCasa() {
         con = NewConectaBanco.getConnection();
         stmt = null;
@@ -36,29 +43,37 @@ public class DaoCasa extends DAO {
     @Override
     public boolean create() {
         String sql = "INSERT INTO casa (id, latitude, longitude, zona, folha, pontos, digitador) VALUES (?,?,?,?,?,?,?)";
+        String verificarSQL = "select * from casa where latitude=? and longitude=? and zona=? and folha=? and pontos=? and digitador=?";
+        
         try {
-
-            for (Casa key : casas) {
+            stmt = con.prepareStatement(verificarSQL);
+            stmt.setString(1, casa.getLatitude());
+            stmt.setString(2, casa.getLongitude());
+            stmt.setString(3, casa.getZona());
+            stmt.setString(4, casa.getFolha());
+            stmt.setString(5, casa.getPontos());
+            stmt.setString(6, casa.getDigitador());
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                System.out.println("casa " + casa.getId() + " Ja cadastrada ");
+            } else {
                 stmt = con.prepareStatement(sql);
-                stmt.setString(1, key.getId());
-                stmt.setString(2, key.getLatitude());
-                stmt.setString(3, key.getLongitude());
-                stmt.setString(4, key.getZona());
-                stmt.setString(5, key.getFolha());
-                stmt.setString(6, key.getPontos());
-                stmt.setString(7, key.getDigitador());
-                System.out.println(key.getPontos());
+                stmt.setString(1, casa.getId());
+                stmt.setString(2, casa.getLatitude());
+                stmt.setString(3, casa.getLongitude());
+                stmt.setString(4, casa.getZona());
+                stmt.setString(5, casa.getFolha());
+                stmt.setString(6, casa.getPontos());
+                stmt.setString(7, casa.getDigitador());
                 stmt.executeUpdate();
             }
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(DaoCasa.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error :: " + ex);
             return false;
-
         } finally {
             NewConectaBanco.closeConneciton(con, stmt);
         }
-
     }
 
     @Override
@@ -116,21 +131,23 @@ public class DaoCasa extends DAO {
     public boolean delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     public void delete(String id) {
         String sql = "DELETE FROM casa WHERE id = ?";
         try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, id);
             stmt.executeUpdate();
-            System.out.println("Teste1  || "+ stmt.executeUpdate());
-            
+            System.out.println("Teste1  || " + stmt.executeUpdate());
+
         } catch (SQLException ex) {
             Logger.getLogger(DaoMoradores.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         } finally {
             NewConectaBanco.closeConneciton(con, stmt, rs);
         }
     }
+
     public Casa read(String idCasa) {
         try {
             String sql = "SELECT * FROM casa where id= ?";

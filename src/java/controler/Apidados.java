@@ -126,20 +126,17 @@ public class Apidados extends HttpServlet {
     }
 
     private void cadastraCasasEmoradores() {
-        listCasa = new ArrayList<>();
         listMoradores = new ArrayList<>();
-        casa = new DaoCasa().read(requisicoes("id_casa"));
+        casa = new Casa();
+        
+        casa.setId(requisicoes("id_casa"));
+        casa.setLatitude(requisicoes("latitude"));
+        casa.setLongitude(requisicoes("longitude"));
+        casa.setZona(requisicoes("zona"));
+        casa.setFolha(requisicoes("folha"));
+        casa.setPontos(requisicoes("ponto"));
+        casa.setDigitador(requisicoes("digitador"));
 
-        if (casa.getId() == null || casa.getId().equals(requisicoes("id_casa"))) {
-            casa = new Casa();
-            casa.setId(requisicoes("id_casa"));
-            casa.setLatitude(requisicoes("latitude"));
-            casa.setLongitude(requisicoes("longitude"));
-            casa.setZona(requisicoes("zona"));
-            casa.setFolha(requisicoes("folha"));
-            casa.setPontos(requisicoes("ponto"));
-            casa.setDigitador(requisicoes("digitador"));
-        }
         moradores = new Moradores();
         moradores.setIdCasa(requisicoes("id_casa"));
         moradores.setNumeroPessoa(requisicoes("NumeroPessoa"));
@@ -154,10 +151,9 @@ public class Apidados extends HttpServlet {
         moradores.setDigitador(requisicoes("digitador"));
         moradores.setSetorAtividade(requisicoes("setorAtividade"));
 
-        listCasa.add(casa);
         listMoradores.add(moradores);
 
-        new DaoCasa(listCasa).create();
+        new DaoCasa(casa).create();
         new DaoMoradores(listMoradores).create();
 
         preparaJSON();
@@ -200,6 +196,7 @@ public class Apidados extends HttpServlet {
         ArrayList<Viajens> listForJsonViajens = (ArrayList<Viajens>) new DaoViajens().readNumeroViagem(parametroIdCasa, parametroNumeroPessoa);
         EnviaJSON.enviaJson(response, listForJsonViajens);
     }
+
     private void buscarPesquisaSelecionadaViajensTodas() {
         String parametroIdCasa = requisicoes("idCasa");
         ArrayList<Viajens> listForJsonViajens = (ArrayList<Viajens>) new DaoViajens().read(parametroIdCasa);

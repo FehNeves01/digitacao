@@ -43,22 +43,70 @@ public class DaoMoradores extends DAO {
     @Override
     public boolean create() {
         String sql = "INSERT INTO moradores (id_casa, numero_pessoa, nome, situacao_familiar, sexo, idade, grau, setor, renda, viajens, digitador, atividade) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String verificaSql = "select * from moradores where id_casa=? AND numero_pessoa=? AND nome=? AND situacao_familiar=? AND sexo=? AND idade=? AND grau=? AND setor=? AND renda=? AND viajens=? AND digitador=? AND atividade=?";
+
         try {
             for (Moradores key : listMoradores) {
-                stmt = con.prepareStatement(sql);
-                stmt.setString(1, key.getIdCasa());
-                stmt.setString(2, key.getNumeroPessoa());
-                stmt.setString(3, key.getNome());
-                stmt.setString(4, key.getSituacaoFamiliar());
-                stmt.setString(5, key.getSexo());
-                stmt.setString(6, key.getIdade());
-                stmt.setString(7, key.getGrau());
-                stmt.setString(8, key.getSetor());
-                stmt.setString(9, key.getRenda());
-                stmt.setString(10, key.getViajens());
-                stmt.setString(11, key.getDigitador());
-                stmt.setString(12, key.getSetorAtividade());
-                stmt.executeUpdate();
+                stmt = con.prepareStatement(verificaSql);
+                stmt.setString(1, key.getIdCasa().trim());
+                stmt.setString(2, key.getNumeroPessoa().trim());
+                stmt.setString(3, key.getNome().trim());
+                stmt.setString(4, key.getSituacaoFamiliar().trim());
+                stmt.setString(5, key.getSexo().trim());
+                stmt.setString(6, key.getIdade().trim());
+                stmt.setString(7, key.getGrau().trim());
+                stmt.setString(8, key.getSetor().trim());
+                stmt.setString(9, key.getRenda().trim());
+                stmt.setString(10, key.getViajens().trim());
+                stmt.setString(11, key.getDigitador().trim());
+                stmt.setString(12, key.getSetorAtividade().trim());
+                rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    System.out.println("Pessoa Já Cadastrada ::  "
+                            + key.getIdCasa() + " || "
+                            + key.getNumeroPessoa() + " || "
+                            + key.getNome() + " || "
+                            + key.getSituacaoFamiliar() + " || "
+                            + key.getSexo() + " || "
+                            + key.getIdade() + " || "
+                            + key.getGrau() + " || "
+                            + key.getSetor() + " || "
+                            + key.getRenda() + " || "
+                            + key.getViajens() + " || "
+                            + key.getDigitador() + " || "
+                            + key.getSetorAtividade() + " || ");
+                } else {
+                    System.out.println("Novo Cadastro de Pessoa :: "
+                            + key.getIdCasa() + " || "
+                            + key.getNumeroPessoa() + " || "
+                            + key.getNome() + " || "
+                            + key.getSituacaoFamiliar() + " || "
+                            + key.getSexo() + " || "
+                            + key.getIdade() + " || "
+                            + key.getGrau() + " || "
+                            + key.getSetor() + " || "
+                            + key.getRenda() + " || "
+                            + key.getViajens() + " || "
+                            + key.getDigitador() + " || "
+                            + key.getSetorAtividade() + " || ");
+                    
+                    stmt = con.prepareStatement(sql);
+                    stmt.setString(1, key.getIdCasa().trim());
+                    stmt.setString(2, key.getNumeroPessoa().trim());
+                    stmt.setString(3, key.getNome().trim());
+                    stmt.setString(4, key.getSituacaoFamiliar().trim());
+                    stmt.setString(5, key.getSexo().trim());
+                    stmt.setString(6, key.getIdade().trim());
+                    stmt.setString(7, key.getGrau().trim());
+                    stmt.setString(8, key.getSetor().trim());
+                    stmt.setString(9, key.getRenda().trim());
+                    stmt.setString(10, key.getViajens().trim());
+                    stmt.setString(11, key.getDigitador().trim());
+                    stmt.setString(12, key.getSetorAtividade().trim());
+                    stmt.executeUpdate();
+                }
+
             }
             return true;
         } catch (SQLException ex) {
@@ -142,18 +190,18 @@ public class DaoMoradores extends DAO {
     public boolean delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public void delete(String idCasa) {
         String sql = "DELETE FROM moradores WHERE id_casa = ?";
         try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, idCasa);
             stmt.executeUpdate();
-            System.out.println("Teste2  || "+ stmt.executeUpdate());
-            
+            System.out.println("Teste2  || " + stmt.executeUpdate());
+
         } catch (SQLException ex) {
             Logger.getLogger(DaoMoradores.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         } finally {
             NewConectaBanco.closeConneciton(con, stmt, rs);
         }
