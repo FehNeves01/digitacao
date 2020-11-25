@@ -21,3 +21,9 @@ input
     height: auto;
     overflow-x: hidden;
 }
+.campoErrado{
+    background-color: rgba(248, 166, 151, 0.1);
+}
+.campoPadrao{
+    background-color: rgba(255, 255, 255, 0.1);
+}

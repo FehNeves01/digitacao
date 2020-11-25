@@ -16,300 +16,8 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/estilo.css" />
     <script>
-        async function dadosPessoas() {
-            if ((document.getElementById("recDigitador").value).trim() !== "") {
-                if ((document.getElementById("recZona").value !== "") && (document.getElementById("recFolha").value !== "")) {
+    var campoComErro;
 
-                    limpaTabelaMoradores();
-                    var recLatitude = document.getElementById("recLatitude").value;
-                    var recLongitude = document.getElementById("recLongitude").value;
-                    var recZona = document.getElementById("recZona").value;
-                    var recFolha = document.getElementById("recFolha").value;
-                    var recPontos = document.getElementById("recPontos").value;
-                    var recDigitador = document.getElementById("recDigitador").value;
-
-                    var recNumeroPessoa = document.getElementById("recNumeroPessoa").value;
-                    var recNome = document.getElementById("recNome").value;
-                    var recSituacao = document.getElementById("recSituacao").value;
-                    var recSexo = document.getElementById("recSexo").value;
-                    var recIdade = document.getElementById("recIdade").value;
-                    var recInstrucao = document.getElementById("recInstrucao").value;
-                    var recAtividade = document.getElementById("recAtividade").value;
-                    var recSetorAtividade = document.getElementById("recSetorAtividade").value;
-                    var recRenda = document.getElementById("recRenda").value;
-                    var recViajens = document.getElementById("recViagens").value;
-
-                    var id = "&id_casa=" + recZona + recFolha;
-                    var latitude = "&latitude=" + recLatitude;
-                    var longitude = "&longitude=" + recLongitude;
-                    var zona = "&zona=" + recZona;
-                    var folha = "&folha=" + recFolha;
-                    var pontos = "&ponto=" + recPontos;
-                    var digitador = "&digitador=" + recDigitador;
-
-                    var NumeroPessoa = "&NumeroPessoa=" + recNumeroPessoa;
-                    var Nome = "&Nome=" + recNome;
-                    var Situacao = "&Situacao=" + recSituacao;
-                    var Sexo = "&Sexo=" + recSexo;
-                    var Idade = "&Idade=" + recIdade;
-                    var Instrucao = "&Instrucao=" + recInstrucao;
-                    var Atividade = "&Atividade=" + recAtividade;
-                    var Renda = "&Renda=" + recRenda;
-                    var Viajens = "&Viajens=" + recViajens;
-                    var setorAtividade = "&setorAtividade=" + recSetorAtividade;
-                    var urlJson;
-                    await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
-                        urlJson = rj
-                    });
-                    var url = urlJson.exportar.apidados + "?acao=cadCasaMoradores"
-                        + id
-                        + latitude
-                        + longitude
-                        + zona
-                        + folha
-                        + pontos
-                        + digitador
-                        + NumeroPessoa
-                        + Nome
-                        + Situacao
-                        + Sexo
-                        + Idade
-                        + Instrucao
-                        + Atividade
-                        + Renda
-                        + Viajens
-                        + setorAtividade
-                        ;
-                    console.log(url);
-                    await fetch(url).then((r) => r.json()).then((rj) => {
-                        console.log(rj);
-                        var corpoDaTabela = document.getElementById("corpoTabelaMoradores");
-
-                        rj.forEach(element => {
-                            var tr = document.createElement("tr");
-                            var NumeroPessoa = document.createElement("td");
-                            var Nome = document.createElement("td");
-                            var Situacao = document.createElement("td");
-                            var Sexo = document.createElement("td");
-                            var Idade = document.createElement("td");
-                            var Instrucao = document.createElement("td");
-                            var Atividade = document.createElement("td");
-                            var setorAtividade = document.createElement("td");
-                            var Renda = document.createElement("td");
-                            var Viajens = document.createElement("td");
-                            var Id = document.createElement("td");
-
-                            Id.textContent = element.id;
-                            NumeroPessoa.textContent = element.numeroPessoa;
-                            Nome.textContent = element.nome;
-                            Situacao.textContent = element.situacaoFamiliar;
-                            Sexo.textContent = element.sexo;
-                            Idade.textContent = element.idade;
-                            Instrucao.textContent = element.grau;
-                            Atividade.textContent = element.setor;
-                            setorAtividade.textContent = element.setorAtividade;
-                            Renda.textContent = element.renda;
-                            Viajens.textContent = element.viajens;
-
-                            tr.appendChild(Id);
-                            tr.appendChild(NumeroPessoa);
-                            tr.appendChild(Nome);
-                            tr.appendChild(Situacao);
-                            tr.appendChild(Sexo);
-                            tr.appendChild(Idade);
-                            tr.appendChild(Instrucao);
-                            tr.appendChild(Atividade);
-                            tr.appendChild(setorAtividade);
-                            tr.appendChild(Renda);
-                            tr.appendChild(Viajens);
-                            console.log(tr);
-
-                            corpoDaTabela.appendChild(tr);
-                        });
-
-
-                    });
-                    limparCamposPessoas();
-                } else {
-                    alert("Favor Preencher Zona ou Folha");
-                    $('#recZona').focus();
-                }
-            } else {
-                alert("Favor Preencher Nome Digitador");
-                document.getElementById("recDigitador").focus();
-            }
-        }
-        async function dadosViagens() {
-            if ((document.getElementById("recDigitador").value).trim() !== "") {
-                if ((document.getElementById("recZona").value !== "") && (document.getElementById("recFolha").value !== "")) {
-                    limpaTabelaViagens();
-                    var id = document.getElementById("recZona").value
-                        + document.getElementById("recFolha").value;
-                    var recNuPessoas = document.getElementById("recNuPessoas").value;
-                    var recVresidencia = document.getElementById("recVresidencia").value;
-                    var recLocal = document.getElementById("recLocal").value;
-                    var recSaida = document.getElementById("recSaida").value;
-                    var recDestino = document.getElementById("recDestino").value;
-                    var recDestZona = document.getElementById("recDestZona").value;
-                    var recMot = document.getElementById("recMot").value;
-                    var recModo = document.getElementById("recModo").value;
-                    var recModo1 = document.getElementById("recModo1").value;
-                    var recModo2 = document.getElementById("recModo2").value;
-                    var recCont = document.getElementById("recCont").value;
-                    var recDigitador = document.getElementById("recDigitador").value;
-                    var recNumViagem = document.getElementById("recNumViagem").value;
-
-                    var parametros = "&id_casa=" + id
-                        + "&recNuPessoas=" + recNuPessoas
-                        + "&recVresidencia=" + recVresidencia
-                        + "&recLocal=" + recLocal
-                        + "&recSaida=" + recSaida
-                        + "&recDestino=" + recDestino
-                        + "&recDestZona=" + recDestZona
-                        + "&recMot=" + recMot
-                        + "&recModo=" + recModo
-                        + "&recModo1=" + recModo1
-                        + "&recModo2=" + recModo2
-                        + "&recCont=" + recCont
-                        + "&digitador=" + recDigitador
-                        + "&numeroViagem=" + recNumViagem;
-                    ;
-                    var urlJson;
-                    await fetch("urlsJSON.json").then((r) => r.json()).then((rj) => {
-                        urlJson = rj
-                    });
-                    var url = urlJson.exportar.apidados + "?acao=cadViagens" + parametros;
-
-                    console.log(url);
-                    await fetch(url).then((r) => r.json()).then((rj) => {
-                        var corpoDaTabela = document.getElementById("viajens");
-
-
-                        rj.forEach(element => {
-                            var tr = document.createElement("tr");
-                            var recNuPessoa = document.createElement("td");
-                            var id = document.createElement("td");
-                            var recVresidencia = document.createElement("td");
-                            var recLocal = document.createElement("td");
-                            var recSaida = document.createElement("td");
-                            var recDestino = document.createElement("td");
-                            var recDestinoZona = document.createElement("td");
-                            var recMot = document.createElement("td");
-                            var recModo = document.createElement("td");
-                            var recModo1 = document.createElement("td");
-                            var recModo2 = document.createElement("td");
-                            var recCont = document.createElement("td");
-                            var recNumViagem = document.createElement("td");
-                            id.textContent = element.id;
-                            recNuPessoa.textContent = element.numeroPessoa;
-                            recVresidencia.textContent = element.viajensResidencia;
-                            recLocal.textContent = element.local;
-                            recSaida.textContent = element.hora;
-                            recDestino.textContent = element.destino;
-                            recDestinoZona.textContent = element.zona;
-                            recMot.textContent = element.mot;
-                            recCont.textContent = element.cont;
-                            recModo.textContent = element.value;
-                            recModo1.textContent = element.value1;
-                            recModo2.textContent = element.value2;
-                            recNumViagem.textContent = element.numeroViagem;
-
-                            tr.appendChild(id);
-                            tr.appendChild(recNumViagem);
-                            tr.appendChild(recNuPessoa);
-                            tr.appendChild(recVresidencia);
-                            tr.appendChild(recLocal);
-                            tr.appendChild(recSaida);
-                            tr.appendChild(recDestino);
-                            tr.appendChild(recDestinoZona);
-                            tr.appendChild(recMot);
-                            tr.appendChild(recModo);
-                            tr.appendChild(recModo1);
-                            tr.appendChild(recModo2);
-                            tr.appendChild(recCont);
-
-                            corpoDaTabela.appendChild(tr);
-                        });
-                    });
-                    limparCamposViagens();
-                } else {
-                    alert("Favor Preencher Zona ou Folha");
-                }
-            } else {
-                alert("Favor Preencher Nome Digitador");
-                document.getElementById("recDigitador");
-            }
-        }
-        function limparCamposPessoas() {
-            var recNumeroPessoa = document.getElementById("recNumeroPessoa").value = "";
-            var recNome = document.getElementById("recNome").value = "";
-            var recSituacao = document.getElementById("recSituacao").value = "";
-            var recSexo = document.getElementById("recSexo").value = "";
-            var recIdade = document.getElementById("recIdade").value = "";
-            var recInstrucao = document.getElementById("recInstrucao").value = "";
-            var recAtividade = document.getElementById("recAtividade").value = "";
-            var recRenda = document.getElementById("recRenda").value = "";
-            var recViajens = document.getElementById("recViagens").value = "";
-            document.getElementById("recSetorAtividade").value = "";
-            document.getElementById("recNumeroPessoa").focus();
-        }
-        function limparCamposViagens() {
-            var recNumViagens = document.getElementById("recNumViagem").value = "";
-            var recNuPessoas = document.getElementById("recNuPessoas").value = "";
-            var recVresidencia = document.getElementById("recVresidencia").value = "";
-            var recLocal = document.getElementById("recLocal").value = "";
-            var recSaida = document.getElementById("recSaida").value = "";
-            var recDestino = document.getElementById("recDestino").value = "";
-            var recDestZona = document.getElementById("recDestZona").value = "";
-            var recMot = document.getElementById("recMot").value = "";
-            var recModo = document.getElementById("recModo").value = "";
-            var recModo1 = document.getElementById("recModo1").value = "";
-            var recModo2 = document.getElementById("recModo2").value = "";
-            var recCont = document.getElementById("recCont").value = "";
-            //                var recIdViagens = document.getElementById("recIdViagens").value = "";
-            document.getElementById("recNumViagem").focus();
-        }
-        function novaPesquisa() {
-            limpaTabelas()
-            limparCamposPessoas();
-            limparCamposViagens();
-
-            document.getElementById("recLatitude").value = "";
-            document.getElementById("recLongitude").value = "";
-            document.getElementById("recLongitude").value = "";
-            document.getElementById("recZona").value = "";
-            document.getElementById("recFolha").value = "";
-            document.getElementById("recPontos").value = "";
-            document.getElementById("recLatitude").focus();
-        }
-        function limpaTabelas() {
-            limpaTabelaMoradores();
-            limpaTabelaViagens();
-        }
-
-        function limpaTabelaMoradores() {
-            var corpoDaTabelaMoradores = document.getElementById("corpoTabelaMoradores");
-            if (corpoDaTabelaMoradores.parentNode) {
-                corpoDaTabelaMoradores.parentNode.removeChild(corpoDaTabelaMoradores);
-            }
-            var tabelaMoradores = document.getElementById("tabelaMoradores");
-            var tbodyTabelaMoradores = document.createElement("tbody");
-            tbodyTabelaMoradores.id = "corpoTabelaMoradores";
-            tabelaMoradores.appendChild(tbodyTabelaMoradores);
-        }
-
-        function limpaTabelaViagens() {
-            var coporDaTabelaViajens = document.getElementById("viajens");
-
-            if (coporDaTabelaViajens.parentNode) {
-                coporDaTabelaViajens.parentNode.removeChild(coporDaTabelaViajens);
-            }
-            var tabelaViagens = document.getElementById("tabelaViagens");
-
-            var tbodyTabelaViagens = document.createElement("tbody");
-            tbodyTabelaViagens.id = "viajens";
-            tabelaViagens.appendChild(tbodyTabelaViagens);
-        }
     </script>
 </head>
 
@@ -345,7 +53,7 @@
                 </ul>
             </div>
             <div class="form-inline">
-                <input class="form-control " id="recDigitador" placeholder="Digitador" aria-label="Digitador">
+                <input class="campoImportante camposMoradores form-control " id="recDigitador" placeholder="Digitador" aria-label="Digitador">
             </div>
         </nav>
         <!-- Fim NavBar -->
@@ -358,84 +66,82 @@
                         <div class="row">
                             <!-- Latitude -->
                             <div class="col-md-2 mb-3">
-                                <label for="recLatitude">Latitude</label> <input type="text" class="form-control"
+                                <label for="recLatitude">Latitude</label> <input type="text" class="camposMoradores campoImportante form-control"
                                     id="recLatitude" placeholder="" value="">
                             </div>
                             <!-- Longitude -->
                             <div class="col-md-2 mb-3">
-                                <label for="recLongitude">Longitude</label> <input type="text" class="form-control"
+                                <label for="recLongitude">Longitude</label> <input type="text" class="camposMoradores campoImportante form-control"
                                     id="recLongitude" placeholder="" value="">
 
                             </div>
                             <!-- Zona -->
                             <div class="col-md-1 mb-3">
-                                <label for="recZona">Zona</label> <input type="text" class="form-control" id="recZona"
+                                <label for="recZona">Zona</label> <input type="text" class="camposMoradores campoImportante  campoNumerico form-control" id="recZona"
                                     placeholder="" value="">
                             </div>
                             <!-- Folha -->
                             <div class="col-md-1 mb-3">
-                                <label for="recFolha">Folha</label> <input type="text" class="form-control"
+                                <label for="recFolha">Folha</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recFolha" placeholder="" value="">
                             </div>
                             <!-- Pontos -->
                             <div class="col-md-1 mb-3">
-                                <label for="recPontos">Pontos</label> <input type="text" class="form-control"
+                                <label for="recPontos">Pontos</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recPontos" placeholder="" value="">
                             </div>
                             <!-- Numero Pessoa -->
-                            <div class="col-md-2 mb-3" style="font-size: 14px;">
-                                <label for="recNumeroPessoa">Nº Pessoa</label> <input type="text" class="form-control"
+                            <div class="col-md-1 mb-3" style="font-size: 14px;">
+                                <label for="recNumeroPessoa">Nº Pessoa</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recNumeroPessoa" placeholder="" value="">
                             </div>
                             <!-- Nome -->
                             <div class="col-md-2 mb-3">
-                                <label for="recNome">Nome</label> <input type="text" class="form-control" id="recNome"
+                                <label for="recNome">Nome</label> <input type="text" class="camposMoradores campoImportante form-control" id="recNome"
                                     placeholder="" value="">
                             </div>
                             <!-- Situacao1 -->
                             <div class="col-md-1 mb-3">
-                                <label for="recSituacao">Situacao</label> <input type="text" class="form-control"
+                                <label for="recSituacao">Situacao</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recSituacao" placeholder="" value="">
                             </div>
                             <!-- Sexo -->
                             <div class="col-md-1 mb-3">
-                                <label for="recSexo">Sexo</label> <input type="text" class="form-control" id="recSexo"
+                                <label for="recSexo">Sexo</label> <input type="text" class="camposMoradores campoImportante form-control campoNumerico" id="recSexo"
                                     placeholder="" value="">
                             </div>
                             <!-- Idade -->
                             <div class="col-md-1 mb-3">
-                                <label for="recIdade">Idade</label> <input type="text" class="form-control"
+                                <label for="recIdade">Idade</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recIdade" placeholder="" value="">
                             </div>
 
                             <!-- Instrucao -->
                             <div class="col-md-1 mb-3">
-                                <label for="recInstrucao">Instrucao</label> <input type="text" class="form-control"
+                                <label for="recInstrucao">Instrucao</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recInstrucao" placeholder="" value="">
                             </div>
 
                             <!-- Atividade -->
-                            <div class="col-md-2 mb-3">
-                                <label for="recAtividade">S.Atividade</label> <input type="text" class="form-control"
+                            <div class="col-md-1 mb-3">
+                                <label for="recAtividade">S.Atividade</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recAtividade" placeholder="" value="">
                             </div>
 
                             <!-- Atividade -->
-                            <div class="col-md-2 mb-3">
-                                <label for="recAtividade">S.Atividade2</label> <input type="text" class="form-control"
+                            <div class="col-md-1 mb-3">
+                                <label for="recAtividade">S.Atividade2</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recSetorAtividade" placeholder="" value="">
                             </div>
 
-
-
                             <!-- Renda -->
-                            <div class="col-md-1 mb-3">
-                                <label for="recRenda">Renda</label> <input type="text" class="form-control"
+                            <div class="col-md-2 mb-3">
+                                <label for="recRenda">Renda</label> <input type="text" class="camposMoradores campoImportante form-control campoDinheiro"
                                     id="recRenda" placeholder="" value="">
                             </div>
                             <!-- Viagens -->
                             <div class="col-md-1 mb-3">
-                                <label for="recViagens">Viagens</label> <input type="text" class="form-control"
+                                <label for="recViagens">Viagens</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recViagens" placeholder="" value="">
                             </div>
                             <div style="margin-top: 8px;">
@@ -471,14 +177,14 @@
                     <div class="cadastroViajens " style="margin-left: 0px;">
                         <div class="row">
                             <!-- Numero Viagem -->
-                            <div class="col-md-2 mb-3">
-                                <label for="recNumViagem">Nº Viagem</label>
-                                <input type="text" class="form-control" id="recNumViagem" placeholder="" value="">
+                            <div class="col-md-1 mb-3">
+                                <label for="recNumViagem" style="font-size: 13px;">Nº Viagem</label>
+                                <input type="text" class="campoImportante campoNumerico form-control" id="recNumViagem" placeholder="" value="">
                             </div>
 
                             <!-- Numero Moradores -->
-                            <div class="col-md-2 mb-3">
-                                <label for="recNuPessoas">Nº Pessoa</label> <input type="text" class="form-control"
+                            <div class="col-md-1 mb-3">
+                                <label for="recNuPessoas" style="font-size: 13px;">Nº Pessoa</label> <input type="text" class="campoImportante campoNumerico form-control"
                                     id="recNuPessoas" placeholder="" value="">
                             </div>
                             <!-- Viagem Residencia -->
@@ -488,12 +194,12 @@
                             </div>
                             <!-- Local -->
                             <div class="col-md-1 mb-3">
-                                <label for="recLocal">Local</label> <input type="text" class="form-control"
+                                <label for="recLocal">Local</label> <input type="text" class="campoNumerico form-control"
                                     id="recLocal" placeholder="" value="">
                             </div>
                             <!-- Hora -->
                             <div class="col-md-1 mb-3">
-                                <label for="recSaida">Hora</label> <input type="text" class="form-control" id="recSaida"
+                                <label for="recSaida">Hora</label> <input type="text" class="campoImportante form-control campoHora" id="recSaida"
                                     placeholder="" value="">
                             </div>
                             <!-- Destino -->
@@ -503,32 +209,32 @@
                             </div>
                             <!-- Zona -->
                             <div class="col-md-1 mb-3">
-                                <label for="recDestZona">Zona</label> <input type="text" class="form-control"
+                                <label for="recDestZona">Zona</label> <input type="text" class="campoImportante campoNumerico form-control"
                                     id="recDestZona" placeholder="" value="">
                             </div>
                             <!-- Mot -->
                             <div class="col-md-1 mb-3">
-                                <label for="recMot">Mot</label> <input type="text" class="form-control" id="recMot"
+                                <label for="recMot">Mot</label> <input type="text" class="campoImportante campoNumerico form-control" id="recMot"
                                     placeholder="" value="">
                             </div>
                             <!-- Modo -->
                             <div class="col-md-1 mb-3">
-                                <label for="recModo">Modo</label> <input type="text" class="form-control" id="recModo"
+                                <label for="recModo">Modo</label> <input type="text" class="campoImportante campoNumerico form-control" id="recModo"
                                     placeholder="" value="">
                             </div>
                             <!-- Modo1 -->
                             <div class="col-md-1 mb-3">
-                                <label for="recModo1">Modo1</label> <input type="text" class="form-control"
+                                <label for="recModo1">Modo1</label> <input type="text" class="campoNumerico form-control"
                                     id="recModo1" placeholder="" value="">
                             </div>
                             <!-- Modo2 -->
                             <div class="col-md-1 mb-3">
-                                <label for="recModo2">Modo2</label> <input type="text" class="form-control"
+                                <label for="recModo2">Modo2</label> <input type="text" class="campoNumerico form-control"
                                     id="recModo2" placeholder="" value="">
                             </div>
                             <!-- Cont -->
                             <div class="col-md-1 mb-3">
-                                <label for="recCont">Cont</label> <input type="text" class="form-control" id="recCont"
+                                <label for="recCont">Cont</label> <input type="text" class="campoImportante campoNumerico form-control" id="recCont"
                                     placeholder="" value="">
                             </div>
 
@@ -601,6 +307,7 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="TelaPrincipal.js"></script>
+    <script src="jquery.mask.js"></script>
 
 
 </body>
