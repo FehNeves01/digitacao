@@ -268,19 +268,25 @@ function testaInputs(classeDeInputs) {
     var retorno = false;
     var elementosInputs = []
     elementosInputs = classeDeInputs;
-for (let i = 0; i < elementosInputs.length; i++) {
-        
+    for (let i = 0; i < elementosInputs.length; i++) {
+
         let pegandoId = $("#" + elementosInputs[i].id);
         console.log(pegandoId.val());
         console.log(pegandoId.id)
         console.log(pegandoId)
-        if (pegandoId.val() == '') {
-            console.log(pegandoId.val() == '');
-            
-            pegandoId.toggleClass('campoErrado');
-            
-            returno= true;
-        } 
+        if ((elementosInputs[i].id !== "recSetorAtividade") || 
+        (elementosInputs[i].id !== "recDestino") || 
+        (elementosInputs[i].id !== "recModo2" )|| 
+        (elementosInputs[i].id !== "recModo3" ) || 
+        (elementosInputs[i].id !== "recVresidencia" ) || 
+        (elementosInputs[i].id !== "recLocal" )){
+            if (pegandoId.val() == '') {
+
+                pegandoId.toggleClass('campoErrado');
+
+                returno = true;
+            }
+        }
     }
     return retorno
 
