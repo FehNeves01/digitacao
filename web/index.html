@@ -4,21 +4,15 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Formulario usado para Digitacao Padrao PK">
     <meta name="author" content="Felipe Neves">
     <link rel="icon" href="https://getbootstrap.com.br/favicon.ico">
     <title>Digitação 2020</title>
-
     <!-- Principal CSS do Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/estilo.css" />
-    <script>
-    var campoComErro;
-
-    </script>
 </head>
 
 <body>
@@ -53,7 +47,8 @@
                 </ul>
             </div>
             <div class="form-inline">
-                <input class="campoImportante camposMoradores form-control " id="recDigitador" placeholder="Digitador" aria-label="Digitador">
+                <input class="campoImportante camposMoradores form-control " id="recDigitador" placeholder="Digitador"
+                    aria-label="Digitador">
             </div>
         </nav>
         <!-- Fim NavBar -->
@@ -66,83 +61,93 @@
                         <div class="row">
                             <!-- Latitude -->
                             <div class="col-md-2 mb-3">
-                                <label for="recLatitude">Latitude</label> <input type="text" class="camposMoradores campoImportante form-control"
-                                    id="recLatitude" placeholder="" value="">
+                                <label for="recLatitude">Latitude</label> <input type="text"
+                                    class="camposMoradores campoImportante form-control" id="recLatitude" placeholder=""
+                                    value="">
                             </div>
                             <!-- Longitude -->
                             <div class="col-md-2 mb-3">
-                                <label for="recLongitude">Longitude</label> <input type="text" class="camposMoradores campoImportante form-control"
-                                    id="recLongitude" placeholder="" value="">
-
+                                <label for="recLongitude">Longitude</label> <input type="text"
+                                    class="camposMoradores campoImportante form-control" id="recLongitude"
+                                    placeholder="" value="">
                             </div>
                             <!-- Zona -->
                             <div class="col-md-1 mb-3">
-                                <label for="recZona">Zona</label> <input type="text" class="camposMoradores campoImportante  campoNumerico form-control" id="recZona"
+                                <label for="recZona">Zona</label> <input type="text"
+                                    class="camposMoradores campoImportante  campoNumerico form-control" id="recZona"
                                     placeholder="" value="">
                             </div>
                             <!-- Folha -->
                             <div class="col-md-1 mb-3">
-                                <label for="recFolha">Folha</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
-                                    id="recFolha" placeholder="" value="">
+                                <label for="recFolha">Folha</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control" id="recFolha"
+                                    placeholder="" value="">
                             </div>
                             <!-- Pontos -->
                             <div class="col-md-1 mb-3">
-                                <label for="recPontos">Pontos</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
-                                    id="recPontos" placeholder="" value="">
+                                <label for="recPontos">Pontos</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control" id="recPontos"
+                                    placeholder="" value="">
                             </div>
                             <!-- Numero Pessoa -->
                             <div class="col-md-1 mb-3" style="font-size: 14px;">
-                                <label for="recNumeroPessoa">Nº Pessoa</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
+                                <label for="recNumeroPessoa">Nº Pessoa</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recNumeroPessoa" placeholder="" value="">
                             </div>
                             <!-- Nome -->
                             <div class="col-md-2 mb-3">
-                                <label for="recNome">Nome</label> <input type="text" class="camposMoradores campoImportante form-control" id="recNome"
-                                    placeholder="" value="">
+                                <label for="recNome">Nome</label> <input type="text"
+                                    class="camposMoradores campoImportante form-control" id="recNome" placeholder=""
+                                    value="">
                             </div>
                             <!-- Situacao1 -->
                             <div class="col-md-1 mb-3">
-                                <label for="recSituacao">Situacao</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
-                                    id="recSituacao" placeholder="" value="">
+                                <label for="recSituacao">Situacao</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control" id="recSituacao"
+                                    placeholder="" value="">
                             </div>
                             <!-- Sexo -->
                             <div class="col-md-1 mb-3">
-                                <label for="recSexo">Sexo</label> <input type="text" class="camposMoradores campoImportante form-control campoNumerico" id="recSexo"
+                                <label for="recSexo">Sexo</label> <input type="text"
+                                    class="camposMoradores campoImportante form-control campoNumerico" id="recSexo"
                                     placeholder="" value="">
                             </div>
                             <!-- Idade -->
                             <div class="col-md-1 mb-3">
-                                <label for="recIdade">Idade</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
-                                    id="recIdade" placeholder="" value="">
+                                <label for="recIdade">Idade</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control" id="recIdade"
+                                    placeholder="" value="">
                             </div>
-
                             <!-- Instrucao -->
                             <div class="col-md-1 mb-3">
-                                <label for="recInstrucao">Instrucao</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
-                                    id="recInstrucao" placeholder="" value="">
+                                <label for="recInstrucao">Instrucao</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control" id="recInstrucao"
+                                    placeholder="" value="">
                             </div>
-
                             <!-- Atividade -->
                             <div class="col-md-1 mb-3">
-                                <label for="recAtividade">S.Atividade</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
-                                    id="recAtividade" placeholder="" value="">
+                                <label for="recAtividade">S.Atividade</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control" id="recAtividade"
+                                    placeholder="" value="">
                             </div>
-
                             <!-- Atividade -->
                             <div class="col-md-1 mb-3">
-                                <label for="recAtividade">S.Atividade2</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
+                                <label for="recAtividade">S.Atividade2</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control"
                                     id="recSetorAtividade" placeholder="" value="">
                             </div>
-
                             <!-- Renda -->
                             <div class="col-md-2 mb-3">
-                                <label for="recRenda">Renda</label> <input type="text" class="camposMoradores campoImportante form-control campoDinheiro"
-                                    id="recRenda" placeholder="" value="">
+                                <label for="recRenda">Renda</label> <input type="text"
+                                    class="camposMoradores campoImportante form-control campoDinheiro" id="recRenda"
+                                    placeholder="" value="">
                             </div>
                             <!-- Viagens -->
                             <div class="col-md-1 mb-3">
-                                <label for="recViagens">Viagens</label> <input type="text" class="camposMoradores campoImportante campoNumerico form-control"
-                                    id="recViagens" placeholder="" value="">
+                                <label for="recViagens">Viagens</label> <input type="text"
+                                    class="camposMoradores campoImportante campoNumerico form-control" id="recViagens"
+                                    placeholder="" value="">
                             </div>
                             <div style="margin-top: 8px;">
                                 <label></label>
@@ -179,66 +184,73 @@
                             <!-- Numero Viagem -->
                             <div class="col-md-1 mb-3">
                                 <label for="recNumViagem" style="font-size: 13px;">Nº Viagem</label>
-                                <input type="text" class="campoImportante campoNumerico form-control" id="recNumViagem" placeholder="" value="">
+                                <input type="text" class="campoViagem campoImportante campoNumerico form-control"
+                                    id="recNumViagem" placeholder="" value="">
                             </div>
-
                             <!-- Numero Moradores -->
                             <div class="col-md-1 mb-3">
-                                <label for="recNuPessoas" style="font-size: 13px;">Nº Pessoa</label> <input type="text" class="campoImportante campoNumerico form-control"
-                                    id="recNuPessoas" placeholder="" value="">
+                                <label for="recNuPessoas" style="font-size: 13px;">Nº Pessoa</label> <input type="text"
+                                    class="campoViagem campoImportante campoNumerico form-control" id="recNuPessoas"
+                                    placeholder="" value="">
                             </div>
                             <!-- Viagem Residencia -->
                             <div class="col-md-2 mb-3">
                                 <label for="recVresidencia">1ª Viagem Residencia?</label> <input type="text"
-                                    class="form-control" id="recVresidencia" placeholder="" value="">
+                                    class="campoViagem form-control" id="recVresidencia" placeholder="" value="">
                             </div>
                             <!-- Local -->
                             <div class="col-md-1 mb-3">
-                                <label for="recLocal">Local</label> <input type="text" class="campoNumerico form-control"
-                                    id="recLocal" placeholder="" value="">
+                                <label for="recLocal">Local</label> <input type="text"
+                                    class="campoViagem campoNumerico form-control" id="recLocal" placeholder=""
+                                    value="">
                             </div>
                             <!-- Hora -->
                             <div class="col-md-1 mb-3">
-                                <label for="recSaida">Hora</label> <input type="text" class="campoImportante form-control campoHora" id="recSaida"
+                                <label for="recSaida">Hora</label> <input type="text"
+                                    class="campoViagem campoImportante form-control campoHora" id="recSaida"
                                     placeholder="" value="">
                             </div>
                             <!-- Destino -->
                             <div class="col-md-3 mb-3">
-                                <label for="recDestino">Destino</label> <input type="text" class="form-control"
-                                    id="recDestino" placeholder="" value="">
+                                <label for="recDestino">Destino</label> <input type="text"
+                                    class="campoViagem form-control" id="recDestino" placeholder="" value="">
                             </div>
                             <!-- Zona -->
                             <div class="col-md-1 mb-3">
-                                <label for="recDestZona">Zona</label> <input type="text" class="campoImportante campoNumerico form-control"
-                                    id="recDestZona" placeholder="" value="">
+                                <label for="recDestZona">Zona</label> <input type="text"
+                                    class="campoViagem campoImportante campoNumerico form-control" id="recDestZona"
+                                    placeholder="" value="">
                             </div>
                             <!-- Mot -->
                             <div class="col-md-1 mb-3">
-                                <label for="recMot">Mot</label> <input type="text" class="campoImportante campoNumerico form-control" id="recMot"
+                                <label for="recMot">Mot</label> <input type="text"
+                                    class="campoViagem campoImportante campoNumerico form-control" id="recMot"
                                     placeholder="" value="">
                             </div>
                             <!-- Modo -->
                             <div class="col-md-1 mb-3">
-                                <label for="recModo">Modo</label> <input type="text" class="campoImportante campoNumerico form-control" id="recModo"
+                                <label for="recModo">Modo</label> <input type="text"
+                                    class="campoViagem campoImportante campoNumerico form-control" id="recModo"
                                     placeholder="" value="">
                             </div>
                             <!-- Modo1 -->
                             <div class="col-md-1 mb-3">
-                                <label for="recModo1">Modo1</label> <input type="text" class="campoNumerico form-control"
-                                    id="recModo1" placeholder="" value="">
+                                <label for="recModo1">Modo1</label> <input type="text"
+                                    class="campoViagem campoNumerico form-control" id="recModo1" placeholder=""
+                                    value="">
                             </div>
                             <!-- Modo2 -->
                             <div class="col-md-1 mb-3">
-                                <label for="recModo2">Modo2</label> <input type="text" class="campoNumerico form-control"
-                                    id="recModo2" placeholder="" value="">
+                                <label for="recModo2">Modo2</label> <input type="text"
+                                    class="campoViagem campoNumerico form-control" id="recModo2" placeholder=""
+                                    value="">
                             </div>
                             <!-- Cont -->
                             <div class="col-md-1 mb-3">
-                                <label for="recCont">Cont</label> <input type="text" class="campoImportante campoNumerico form-control" id="recCont"
+                                <label for="recCont">Cont</label> <input type="text"
+                                    class="campoViagem campoImportante campoNumerico form-control" id="recCont"
                                     placeholder="" value="">
                             </div>
-
-
                             <div style="margin-top: 8px;">
                                 <label></label>
                                 <button class="btn btn-primary btn-lg btn-block" style="font-size: 13px"
@@ -247,7 +259,6 @@
                                 </button>
                             </div>
                         </div>
-
                     </div>
                     <!-- ColocarTable Viagens -->
                     <table class="table table-sm table-striped" id="tabelaViagens">
@@ -269,7 +280,6 @@
                             </tr>
                         </thead>
                         <tbody id="viajens">
-
                         </tbody>
                     </table>
                     <div class="row">
@@ -284,13 +294,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            <br>
-            <br>
-            <center>
-
-            </center>
         </div>
     </div>
     <!-- Principal JavaScript do Bootstrap
@@ -308,8 +312,6 @@
         crossorigin="anonymous"></script>
     <script src="TelaPrincipal.js"></script>
     <script src="jquery.mask.js"></script>
-
-
 </body>
 
 </html>

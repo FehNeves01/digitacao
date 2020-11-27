@@ -1,7 +1,4 @@
 var campoComErro;
-
-
-
 /************************ Casa & moradores ********************************/
 $('#recLatitude').keyup((e) => {
     if (e.keyCode === 13) {
@@ -288,13 +285,6 @@ for (let i = 0; i < elementosInputs.length; i++) {
     return retorno
 
 }
-
-
-
-
-
-
-
 
 async function dadosPessoas() {
 
